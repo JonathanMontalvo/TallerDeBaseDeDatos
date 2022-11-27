@@ -5,6 +5,7 @@
 package com.mycompany.veterinaria.modelo;
 
 import com.mycompany.veterinaria.control.Conexion;
+import com.mycompany.veterinaria.vista.Principal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -123,6 +124,12 @@ public class TipoDeServicio
     @Override
     public String toString()
     {
+        //Si es 0 regresa el id
+        if (Principal.cadenaTipoDeServicio == 0)
+        {
+            return String.valueOf(getIdservicio());
+        }
+        //Si es 1 regresa el nombre
         return getNombre();
     }
 

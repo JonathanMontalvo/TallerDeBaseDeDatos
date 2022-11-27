@@ -5,6 +5,7 @@
 package com.mycompany.veterinaria.modelo;
 
 import com.mycompany.veterinaria.control.Conexion;
+import com.mycompany.veterinaria.vista.Principal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -136,6 +137,18 @@ public class Inventario
     public void setPrecio(double precio)
     {
         this.precio = precio;
+    }
+
+    @Override
+    public String toString()
+    {
+        //Si es 0 regresa el id
+        if (Principal.cadenaInventario == 0)
+        {
+            return String.valueOf(getIdarticulo());
+        }
+        //si es 1 regresa el nombre
+        return getNombre();
     }
 
     public int insertar(int idproveedor, String tipo, String nombre, int cantidad, double precio)

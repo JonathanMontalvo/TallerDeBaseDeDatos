@@ -16,6 +16,13 @@ public class Principal extends javax.swing.JFrame
 {
 
     public static int accion;
+    public static int cadenaConsulta;
+    public static int cadenaEmpleado;
+    public static int cadenaInventario;
+    public static int cadenaMascota;
+    public static int cadenaProveedor;
+    public static int cadenaTipoDeServicio;
+    public static int cadenaTutor;
 
     /**
      * Creates new form Principal
@@ -23,6 +30,13 @@ public class Principal extends javax.swing.JFrame
     public Principal()
     {
         accion = 0;
+        cadenaConsulta = 0;
+        cadenaEmpleado = 0;
+        cadenaInventario = 0;
+        cadenaMascota = 0;
+        cadenaProveedor = 0;
+        cadenaTipoDeServicio = 0;
+        cadenaTutor = 0;
         this.setContentPane(new ImagenFondo());
         initComponents();
     }

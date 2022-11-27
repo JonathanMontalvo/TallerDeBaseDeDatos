@@ -5,6 +5,7 @@
 package com.mycompany.veterinaria.modelo;
 
 import com.mycompany.veterinaria.control.Conexion;
+import com.mycompany.veterinaria.vista.Principal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -172,6 +173,18 @@ public class Empleados
     public void setFechanacimiento(String fechanacimiento)
     {
         this.fechanacimiento = fechanacimiento;
+    }
+
+    @Override
+    public String toString()
+    {
+        //Si es 0 regresa el id
+        if (Principal.cadenaEmpleado == 0)
+        {
+            return String.valueOf(getIdempleado());
+        }
+        //Si es 1 regresa el nombre completo
+        return getNombre() + " " + getApellidopa() + " " + getApellidoma();
     }
 
     public int insertar(int idempleado, String nombre, String apellidopa, String apellidoma, String areatrabajo, long telefono, String correo, String fechanacimiento)

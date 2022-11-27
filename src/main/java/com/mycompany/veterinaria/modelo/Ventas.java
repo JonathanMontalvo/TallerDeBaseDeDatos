@@ -20,18 +20,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Ventas
 {
-
+    
     private int idventa;
     private int idarticulo;
     private int idservicio;
     private String formapago;
     private String detalles;
     private double total;
-
+    
     public Ventas()
     {
     }
-
+    
     public Ventas(int idventa, int idarticulo, int idservicio, String formapago, String detalles, double total)
     {
         this.idventa = idventa;
@@ -137,13 +137,19 @@ public class Ventas
     {
         this.total = total;
     }
-
+    
+    @Override
+    public String toString()
+    {
+        return String.valueOf(getIdventa());
+    }
+    
     public int insertar(int idarticulo, int idservicio, String formapago, String detalles)
     {
         int respuesta = 0;
         Connection conect = null;
         PreparedStatement ps = null;
-
+        
         try
         {
             String sql = "insert into Ventas (idventa, idarticulo, idservicio, formapago, detalles, total) values (idVenta.nextval,?,?,?,?,(select precio from Inventario where idarticulo = ?)+(select precio from Tiposervicio where idservicio = ?))";
@@ -171,7 +177,7 @@ public class Ventas
                 {
                     conect.close();
                 }
-
+                
             } catch (SQLException ex)
             {
                 Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
@@ -179,7 +185,7 @@ public class Ventas
         }
         return respuesta;
     }
-
+    
     public DefaultTableModel consultar()
     {
         String[] campos =
@@ -191,7 +197,7 @@ public class Ventas
         Connection conect = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-
+        
         try
         {
             String sql = "select * from Ventas order by idventa";
@@ -227,7 +233,7 @@ public class Ventas
                 {
                     conect.close();
                 }
-
+                
             } catch (SQLException ex)
             {
                 Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
@@ -235,13 +241,13 @@ public class Ventas
         }
         return modelo;
     }
-
+    
     public int actualizar(int idarticulo, int idservicio, String formapago, String detalles, double total, int idventa)
     {
         int respuesta = 0;
         Connection conect = null;
         PreparedStatement ps = null;
-
+        
         try
         {
             String sql = "update Ventas set idarticulo = ?, idservicio = ?, formapago = ?, detalles = ?, total = ? where idventa = ?";
@@ -269,7 +275,7 @@ public class Ventas
                 {
                     conect.close();
                 }
-
+                
             } catch (SQLException ex)
             {
                 Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
@@ -277,13 +283,13 @@ public class Ventas
         }
         return respuesta;
     }
-
+    
     public int eliminar(int idventa)
     {
         int respuesta = 0;
         Connection conect = null;
         PreparedStatement ps = null;
-
+        
         try
         {
             String sql = "delete Ventas where idventa = ?";
@@ -291,7 +297,7 @@ public class Ventas
             ps = conect.prepareStatement(sql);
             ps.setInt(1, idventa);
             respuesta = ps.executeUpdate();
-
+            
         } catch (SQLException ex)
         {
             Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
@@ -307,7 +313,7 @@ public class Ventas
                 {
                     conect.close();
                 }
-
+                
             } catch (SQLException ex)
             {
                 Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
@@ -315,17 +321,17 @@ public class Ventas
         }
         return respuesta;
     }
-
+    
     public ArrayList combo_Ventas()
     {
         ArrayList listaventas = new ArrayList();
-
+        
         Ventas obj_ventas = null;
-
+        
         Connection conect = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-
+        
         try
         {
             String sql = "select * from Ventas order by idventa";
@@ -362,13 +368,13 @@ public class Ventas
                 {
                     conect.close();
                 }
-
+                
             } catch (SQLException ex)
             {
                 Logger.getLogger(Ventas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+        
         return listaventas;
     }
 }

@@ -5,6 +5,7 @@
 package com.mycompany.veterinaria.modelo;
 
 import com.mycompany.veterinaria.control.Conexion;
+import com.mycompany.veterinaria.vista.Principal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Mascota
 {
-    
+
     private int idmascota;
     private int idtutor;
     private String tipo;
@@ -31,11 +32,11 @@ public class Mascota
     private String fechanacimiento;
     private String detalles;
     private String nombre;
-    
+
     public Mascota()
     {
     }
-    
+
     public Mascota(int idmascota, int idtutor, String tipo, String raza, String sexo, double peso, double medida, String fechanacimiento, String detalles, String nombre)
     {
         this.idmascota = idmascota;
@@ -209,19 +210,25 @@ public class Mascota
     {
         this.nombre = nombre;
     }
-    
+
     @Override
     public String toString()
     {
-        return String.valueOf(getIdmascota());
+        //Si es 0 regresa el id
+        if (Principal.cadenaMascota == 0)
+        {
+            return String.valueOf(getIdmascota());
+        }
+        //Si es 1 regresa el nombre
+        return getNombre();
     }
-    
+
     public int insertar(int idtutor, String tipo, String raza, String sexo, double peso, double medida, String fechanacimiento, String detalles, String nombre)
     {
         int respuesta = 0;
         Connection conect = null;
         PreparedStatement ps = null;
-        
+
         try
         {
             String sql = "insert into Mascota (idmascota, idtutor, tipo, raza, sexo, peso, medida, fechanacimiento, detalles, nombre) values (idMascota.nextval,?,?,?,?,?,?,?,?,?)";
@@ -252,7 +259,7 @@ public class Mascota
                 {
                     conect.close();
                 }
-                
+
             } catch (SQLException ex)
             {
                 Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
@@ -260,7 +267,7 @@ public class Mascota
         }
         return respuesta;
     }
-    
+
     public DefaultTableModel consultar()
     {
         String[] campos =
@@ -272,7 +279,7 @@ public class Mascota
         Connection conect = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        
+
         try
         {
             String sql = "select * from Mascota order by idmascota";
@@ -312,7 +319,7 @@ public class Mascota
                 {
                     conect.close();
                 }
-                
+
             } catch (SQLException ex)
             {
                 Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
@@ -320,13 +327,13 @@ public class Mascota
         }
         return modelo;
     }
-    
+
     public int actualizar(int idtutor, String tipo, String raza, String sexo, double peso, double medida, String fechanacimiento, String detalles, String nombre, int idmascota)
     {
         int respuesta = 0;
         Connection conect = null;
         PreparedStatement ps = null;
-        
+
         try
         {
             String sql = "update Mascota set idtutor = ?, tipo = ?, raza = ?, sexo = ?, peso = ?, medida = ?, fechanacimiento = ?, detalles = ?, nombre = ? where idmascota = ?";
@@ -358,7 +365,7 @@ public class Mascota
                 {
                     conect.close();
                 }
-                
+
             } catch (SQLException ex)
             {
                 Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
@@ -366,13 +373,13 @@ public class Mascota
         }
         return respuesta;
     }
-    
+
     public int eliminar(int idmascota)
     {
         int respuesta = 0;
         Connection conect = null;
         PreparedStatement ps = null;
-        
+
         try
         {
             String sql = "delete Mascota where idmascota = ?";
@@ -380,7 +387,7 @@ public class Mascota
             ps = conect.prepareStatement(sql);
             ps.setInt(1, idmascota);
             respuesta = ps.executeUpdate();
-            
+
         } catch (SQLException ex)
         {
             Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
@@ -396,7 +403,7 @@ public class Mascota
                 {
                     conect.close();
                 }
-                
+
             } catch (SQLException ex)
             {
                 Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
@@ -404,17 +411,17 @@ public class Mascota
         }
         return respuesta;
     }
-    
+
     public ArrayList combo_Mascota()
     {
         ArrayList listamascota = new ArrayList();
-        
+
         Mascota obj_mascota = null;
-        
+
         Connection conect = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        
+
         try
         {
             String sql = "select * from Mascota order by idmascota";
@@ -455,13 +462,13 @@ public class Mascota
                 {
                     conect.close();
                 }
-                
+
             } catch (SQLException ex)
             {
                 Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
         return listamascota;
     }
 }

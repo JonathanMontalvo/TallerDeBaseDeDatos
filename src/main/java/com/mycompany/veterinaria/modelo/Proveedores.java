@@ -5,6 +5,7 @@
 package com.mycompany.veterinaria.modelo;
 
 import com.mycompany.veterinaria.control.Conexion;
+import com.mycompany.veterinaria.vista.Principal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -100,6 +101,18 @@ public class Proveedores
     public void setCorreo(String correo)
     {
         this.correo = correo;
+    }
+
+    @Override
+    public String toString()
+    {
+        //Si es 0 regresa el id
+        if (Principal.cadenaProveedor == 0)
+        {
+            return String.valueOf(getIdproveedor());
+        }
+        //Si es 1 regresa el nombre
+        return getNombre();
     }
 
     public int insertar(String nombre, long telefono, String correo)

@@ -5,6 +5,7 @@
 package com.mycompany.veterinaria.modelo;
 
 import com.mycompany.veterinaria.control.Conexion;
+import com.mycompany.veterinaria.vista.Principal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,14 +21,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Consultas
 {
-
+    
     private int idconsulta;
     private String detalles;
-
+    
     public Consultas()
     {
     }
-
+    
     public Consultas(int idconsulta, String detalles)
     {
         this.idconsulta = idconsulta;
@@ -65,19 +66,25 @@ public class Consultas
     {
         this.detalles = detalles;
     }
-
+    
     @Override
     public String toString()
     {
+        //Si es 0 regresa el id
+        if (Principal.cadenaConsulta == 0)
+        {
+            return String.valueOf(getIdconsulta());
+        }
+        //Si es 1 regresa los detalles
         return getDetalles();
     }
-
+    
     public int insertar(int idconsulta, String detalles)
     {
         int respuesta = 0;
         Connection conect = null;
         PreparedStatement ps = null;
-
+        
         try
         {
             String sql = "insert into Consultas (idconsulta, detalles) values (idConsulta.nextval,?)";
@@ -100,7 +107,7 @@ public class Consultas
                 {
                     conect.close();
                 }
-
+                
             } catch (SQLException ex)
             {
                 Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
@@ -108,7 +115,7 @@ public class Consultas
         }
         return respuesta;
     }
-
+    
     public DefaultTableModel consultar()
     {
         String[] campos =
@@ -120,7 +127,7 @@ public class Consultas
         Connection conect = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-
+        
         try
         {
             String sql = "select * from Consultas order by idconsulta";
@@ -152,7 +159,7 @@ public class Consultas
                 {
                     conect.close();
                 }
-
+                
             } catch (SQLException ex)
             {
                 Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
@@ -160,13 +167,13 @@ public class Consultas
         }
         return modelo;
     }
-
+    
     public int actualizar(String detalles, int idconsulta)
     {
         int respuesta = 0;
         Connection conect = null;
         PreparedStatement ps = null;
-
+        
         try
         {
             String sql = "update Consultas set detalles = ? where id = ?";
@@ -190,7 +197,7 @@ public class Consultas
                 {
                     conect.close();
                 }
-
+                
             } catch (SQLException ex)
             {
                 Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
@@ -198,13 +205,13 @@ public class Consultas
         }
         return respuesta;
     }
-
+    
     public int eliminar(int idconsulta)
     {
         int respuesta = 0;
         Connection conect = null;
         PreparedStatement ps = null;
-
+        
         try
         {
             String sql = "delete Consultas where idconsulta = ?";
@@ -212,7 +219,7 @@ public class Consultas
             ps = conect.prepareStatement(sql);
             ps.setInt(1, idconsulta);
             respuesta = ps.executeUpdate();
-
+            
         } catch (SQLException ex)
         {
             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
@@ -228,7 +235,7 @@ public class Consultas
                 {
                     conect.close();
                 }
-
+                
             } catch (SQLException ex)
             {
                 Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
@@ -236,17 +243,17 @@ public class Consultas
         }
         return respuesta;
     }
-
+    
     public ArrayList combo_Consultas()
     {
         ArrayList listaconsultas = new ArrayList();
-
+        
         Consultas obj_consultas = null;
-
+        
         Connection conect = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-
+        
         try
         {
             String sql = "select * from Consultas order by idconsulta";
@@ -279,13 +286,13 @@ public class Consultas
                 {
                     conect.close();
                 }
-
+                
             } catch (SQLException ex)
             {
                 Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
+        
         return listaconsultas;
     }
 }
