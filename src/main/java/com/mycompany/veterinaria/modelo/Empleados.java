@@ -258,10 +258,82 @@ public class Empleados
                 registro[5] = rs.getString("telefono");
                 registro[6] = rs.getString("correo");
                 registro[7] = rs.getString("fechanacimiento");
-                registro[7] = registro[7].substring(8, 10)
-                        + "/" + registro[7].substring(5, 7)
-                        + "/" + registro[7].substring(0, 4);
+                if (registro[7] != null)
+                {
+                    registro[7] = registro[7].substring(8, 10)
+                            + "/" + registro[7].substring(5, 7)
+                            + "/" + registro[7].substring(0, 4);
+                } else
+                {
+                    registro[7] = "Desconocida";
+                }
+                modelo.addRow(registro);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (conect != null)
+                {
+                    conect.close();
+                }
 
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(Empleados.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return modelo;
+    }
+
+    public DefaultTableModel consultaEspecifica(int idempleado)
+    {
+        String[] campos =
+        {
+            "IDEMPLEADO", "NOMBRE", "APELLIDOPA", "APELLIDOMA", "AREATRABAJO", "TELEFONO", "CORREO", "FECHANACIMIENTO"
+        };
+        String[] registro = new String[8];
+        DefaultTableModel modelo = new DefaultTableModel(null, campos);
+        Connection conect = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try
+        {
+            String sql = "select * from Empleados where idempleado = ?";
+            conect = Conexion.Conectar();
+            ps = conect.prepareStatement(sql);
+            ps.setInt(1, idempleado);
+            rs = ps.executeQuery();
+            while (rs.next())
+            {
+                registro[0] = rs.getString("idempleado");
+                registro[1] = rs.getString("nombre");
+                registro[2] = rs.getString("apellidopa");
+                registro[3] = rs.getString("apellidoma");
+                registro[4] = rs.getString("areatrabajo");
+                registro[5] = rs.getString("telefono");
+                registro[6] = rs.getString("correo");
+                registro[7] = rs.getString("fechanacimiento");
+                if (registro[7] != null)
+                {
+                    registro[7] = registro[7].substring(8, 10)
+                            + "/" + registro[7].substring(5, 7)
+                            + "/" + registro[7].substring(0, 4);
+                } else
+                {
+                    registro[7] = "Desconocida";
+                }
                 modelo.addRow(registro);
             }
         } catch (SQLException ex)

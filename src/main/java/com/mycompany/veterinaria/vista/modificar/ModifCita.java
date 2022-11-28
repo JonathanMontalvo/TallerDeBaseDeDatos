@@ -8,6 +8,7 @@ import com.mycompany.veterinaria.modelo.Cita;
 import com.mycompany.veterinaria.modelo.Consultas;
 import com.mycompany.veterinaria.modelo.Mascota;
 import com.mycompany.veterinaria.modelo.TipoDeServicio;
+import com.mycompany.veterinaria.vista.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,6 +30,9 @@ public class ModifCita extends javax.swing.JFrame
      */
     public ModifCita()
     {
+        Principal.cadenaTipoDeServicio = 1;
+        Principal.cadenaMascota = 0;
+        Principal.cadenaConsulta = 1;
         initComponents();
         llenarCombo_IdCita();
         llenarCombo_TipoServicio();

@@ -25,6 +25,8 @@ public class Eliminar extends javax.swing.JFrame
         initComponents();
         combo_Eliminar.setVisible(false);
         btn_Eliminar.setVisible(false);
+        jScrollPane1.setVisible(false);
+        datos.setVisible(false);
     }
 
     /**
@@ -40,14 +42,20 @@ public class Eliminar extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
         combo_Eliminar = new javax.swing.JComboBox();
         btn_Eliminar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        datos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cargando...");
         addWindowListener(new java.awt.event.WindowAdapter()
         {
-            public void windowActivated(java.awt.event.WindowEvent evt)
+            public void windowClosed(java.awt.event.WindowEvent evt)
             {
-                formWindowActivated(evt);
+                formWindowClosed(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt)
+            {
+                formWindowOpened(evt);
             }
         });
 
@@ -55,6 +63,13 @@ public class Eliminar extends javax.swing.JFrame
         jLabel1.setText("Cargando...");
 
         combo_Eliminar.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
+        combo_Eliminar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                combo_EliminarActionPerformed(evt);
+            }
+        });
 
         btn_Eliminar.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
         btn_Eliminar.setText("Eliminar");
@@ -66,21 +81,33 @@ public class Eliminar extends javax.swing.JFrame
             }
         });
 
+        datos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {"Cargando..."}
+            },
+            new String []
+            {
+                "Cargando..."
+            }
+        ));
+        jScrollPane1.setViewportView(datos);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(combo_Eliminar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(combo_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(224, 224, 224)
-                        .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(421, 421, 421)
+                .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(425, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,9 +116,11 @@ public class Eliminar extends javax.swing.JFrame
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(combo_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addComponent(btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
 
         jLabel1.getAccessibleContext().setAccessibleName("");
@@ -100,8 +129,209 @@ public class Eliminar extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowActivated(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowActivated
-    {//GEN-HEADEREND:event_formWindowActivated
+    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_EliminarActionPerformed
+    {//GEN-HEADEREND:event_btn_EliminarActionPerformed
+        // TODO add your handling code here:
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de querer eliminar estos datos?\nUna vez eliminados no es posiblle recuperarlos.", "Confirmación", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == 0)
+        {
+            int r = 0;
+            btn_Eliminar.setVisible(false);
+            combo_Eliminar.setVisible(false);
+            jLabel1.setText("Cargando...");
+
+            switch (Entidad.eliminar)
+            {
+                case 1:
+                    Cita cita = new Cita();
+                    r = cita.eliminar((int) combo_Eliminar.getSelectedItem());
+                    if (r != 0)
+                    {
+                        llenarCombo_IdCita();
+                        JOptionPane.showMessageDialog(null, "Cita eliminada");
+                        jLabel1.setText("Seleccione el id de la cita a eliminar: ");
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
+                                "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                case 2:
+                    Consultas consultas = new Consultas();
+                    r = consultas.eliminar((int) combo_Eliminar.getSelectedItem());
+                    if (r != 0)
+                    {
+                        llenarCombo_IdCita();
+                        JOptionPane.showMessageDialog(null, "Consulta eliminada");
+                        jLabel1.setText("Seleccione el id de la consulta a eliminar: ");
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
+                                "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                case 3:
+                    Empleados empleados = new Empleados();
+                    r = empleados.eliminar((int) combo_Eliminar.getSelectedItem());
+                    if (r != 0)
+                    {
+                        llenarCombo_IdEmpleado();
+                        JOptionPane.showMessageDialog(null, "Empleado eliminado");
+                        jLabel1.setText("Seleccione el id del empleado a eliminar: ");
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
+                                "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                case 4:
+                    Inventario inventario = new Inventario();
+                    r = inventario.eliminar((int) combo_Eliminar.getSelectedItem());
+                    if (r != 0)
+                    {
+                        llenarCombo_IdArticulo();
+                        JOptionPane.showMessageDialog(null, "Artículo eliminado");
+                        jLabel1.setText("Seleccione el id del artículo a eliminar: ");
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
+                                "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                case 5:
+                    Mascota mascota = new Mascota();
+                    r = mascota.eliminar((int) combo_Eliminar.getSelectedItem());
+                    if (r != 0)
+                    {
+                        llenarCombo_IdMascota();
+                        JOptionPane.showMessageDialog(null, "Mascota eliminada");
+                        jLabel1.setText("Seleccione el id de la mascota a eliminar: ");
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
+                                "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                case 6:
+                    Proveedores proveedores = new Proveedores();
+                    r = proveedores.eliminar((int) combo_Eliminar.getSelectedItem());
+                    if (r != 0)
+                    {
+                        llenarCombo_IdProveedor();
+                        JOptionPane.showMessageDialog(null, "Proveedor eliminado");
+                        jLabel1.setText("Seleccione el id del proveedor a eliminar: ");
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
+                                "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                case 7:
+                    TipoDeServicio tipodeservicio = new TipoDeServicio();
+                    r = tipodeservicio.eliminar((int) combo_Eliminar.getSelectedItem());
+                    if (r != 0)
+                    {
+                        llenarCombo_IdServicio();
+                        JOptionPane.showMessageDialog(null, "Servicio eliminado");
+                        jLabel1.setText("Seleccione el id del tipo de servicio a eliminar: ");
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
+                                "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                case 8:
+                    Tutor tutor = new Tutor();
+                    r = tutor.eliminar((int) combo_Eliminar.getSelectedItem());
+                    if (r != 0)
+                    {
+                        llenarCombo_IdTutor();
+                        JOptionPane.showMessageDialog(null, "Tutor eliminado");
+                        jLabel1.setText("Seleccione el id del tutor a eliminar: ");
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
+                                "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                case 9:
+                    Ventas ventas = new Ventas();
+                    r = ventas.eliminar((int) combo_Eliminar.getSelectedItem());
+                    if (r != 0)
+                    {
+                        llenarCombo_IdVentas();
+                        JOptionPane.showMessageDialog(null, "Venta eliminada");
+                        jLabel1.setText("Selecciona el id de la venta a eliminar: ");
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
+                                "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(this, "OCURRIO UN ERROR 7" + Entidad.eliminar, "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+            }
+            combo_Eliminar.setVisible(true);
+            btn_Eliminar.setVisible(true);
+        }
+    }//GEN-LAST:event_btn_EliminarActionPerformed
+
+    private void combo_EliminarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_EliminarActionPerformed
+    {//GEN-HEADEREND:event_combo_EliminarActionPerformed
+        // TODO add your handling code here:
+        switch (Entidad.eliminar)
+        {
+            case 1:
+                Cita obj_cita = new Cita();
+                datos.setModel(obj_cita.consultaEspecifica((int) combo_Eliminar.getSelectedItem()));
+                break;
+            case 2:
+                Consultas obj_consulta = new Consultas();
+                datos.setModel(obj_consulta.consultaEspecifica((int) combo_Eliminar.getSelectedItem()));
+                break;
+            case 3:
+                Empleados obj_empleado = new Empleados();
+                datos.setModel(obj_empleado.consultaEspecifica((int) combo_Eliminar.getSelectedItem()));
+                break;
+            case 4:
+                Inventario obj_inventario = new Inventario();
+                datos.setModel(obj_inventario.consultaEspecifica((int) combo_Eliminar.getSelectedItem()));
+                break;
+            case 5:
+                Mascota obj_mascota = new Mascota();
+                datos.setModel(obj_mascota.consultaEspecifica((int) combo_Eliminar.getSelectedItem()));
+                break;
+            case 6:
+                Proveedores obj_proveedor = new Proveedores();
+                datos.setModel(obj_proveedor.consultaEspecifica((int) combo_Eliminar.getSelectedItem()));
+                break;
+            case 7:
+                TipoDeServicio obj_servicio = new TipoDeServicio();
+                datos.setModel(obj_servicio.consultaEspecifica((int) combo_Eliminar.getSelectedItem()));
+                break;
+            case 8:
+                Tutor obj_tutor = new Tutor();
+                datos.setModel(obj_tutor.consultaEspecifica((int) combo_Eliminar.getSelectedItem()));
+                break;
+            case 9:
+                Ventas obj_venta = new Ventas();
+                datos.setModel(obj_venta.consultaEspecifica((int) combo_Eliminar.getSelectedItem()));
+                break;
+            default:
+                JOptionPane.showMessageDialog(this, "OCURRIO UN ERROR 100" + Entidad.eliminar, "Error", JOptionPane.ERROR_MESSAGE);
+                break;
+        }
+    }//GEN-LAST:event_combo_EliminarActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosed
+    {//GEN-HEADEREND:event_formWindowClosed
+        // TODO add your handling code here:
+        Entidad.eliminar = 0;
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
+    {//GEN-HEADEREND:event_formWindowOpened
         // TODO add your handling code here:
         switch (Entidad.eliminar)
         {
@@ -156,151 +386,9 @@ public class Eliminar extends javax.swing.JFrame
         }
         combo_Eliminar.setVisible(true);
         btn_Eliminar.setVisible(true);
-    }//GEN-LAST:event_formWindowActivated
-
-    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_EliminarActionPerformed
-    {//GEN-HEADEREND:event_btn_EliminarActionPerformed
-        // TODO add your handling code here:
-        int r = 0;
-        btn_Eliminar.setVisible(false);
-        combo_Eliminar.setVisible(false);
-        jLabel1.setText("Cargando...");
-
-        switch (Entidad.eliminar)
-        {
-            case 1:
-                Cita cita = new Cita();
-                r = cita.eliminar((int) combo_Eliminar.getSelectedItem());
-                if (r != 0)
-                {
-                    llenarCombo_IdCita();
-                    JOptionPane.showMessageDialog(null, "Cita eliminada");
-                    jLabel1.setText("Seleccione el id de la cita a eliminar: ");
-                } else
-                {
-                    JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
-                            "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
-                }
-                break;
-            case 2:
-                Consultas consultas = new Consultas();
-                r = consultas.eliminar((int) combo_Eliminar.getSelectedItem());
-                if (r != 0)
-                {
-                    llenarCombo_IdCita();
-                    JOptionPane.showMessageDialog(null, "Consulta eliminada");
-                    jLabel1.setText("Seleccione el id de la consulta a eliminar: ");
-                } else
-                {
-                    JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
-                            "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
-                }
-                break;
-            case 3:
-                Empleados empleados = new Empleados();
-                r = empleados.eliminar((int) combo_Eliminar.getSelectedItem());
-                if (r != 0)
-                {
-                    llenarCombo_IdEmpleado();
-                    JOptionPane.showMessageDialog(null, "Empleado eliminado");
-                    jLabel1.setText("Seleccione el id del empleado a eliminar: ");
-                } else
-                {
-                    JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
-                            "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
-                }
-                break;
-            case 4:
-                Inventario inventario = new Inventario();
-                r = inventario.eliminar((int) combo_Eliminar.getSelectedItem());
-                if (r != 0)
-                {
-                    llenarCombo_IdArticulo();
-                    JOptionPane.showMessageDialog(null, "Artículo eliminado");
-                    jLabel1.setText("Seleccione el id del artículo a eliminar: ");
-                } else
-                {
-                    JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
-                            "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
-                }
-                break;
-            case 5:
-                Mascota mascota = new Mascota();
-                r = mascota.eliminar((int) combo_Eliminar.getSelectedItem());
-                if (r != 0)
-                {
-                    llenarCombo_IdMascota();
-                    JOptionPane.showMessageDialog(null, "Mascota eliminada");
-                    jLabel1.setText("Seleccione el id de la mascota a eliminar: ");
-                } else
-                {
-                    JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
-                            "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
-                }
-                break;
-            case 6:
-                Proveedores proveedores = new Proveedores();
-                r = proveedores.eliminar((int) combo_Eliminar.getSelectedItem());
-                if (r != 0)
-                {
-                    llenarCombo_IdProveedor();
-                    JOptionPane.showMessageDialog(null, "Proveedor eliminado");
-                    jLabel1.setText("Seleccione el id del proveedor a eliminar: ");
-                } else
-                {
-                    JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
-                            "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
-                }
-                break;
-            case 7:
-                TipoDeServicio tipodeservicio = new TipoDeServicio();
-                r = tipodeservicio.eliminar((int) combo_Eliminar.getSelectedItem());
-                if (r != 0)
-                {
-                    llenarCombo_IdServicio();
-                    JOptionPane.showMessageDialog(null, "Servicio eliminado");
-                    jLabel1.setText("Seleccione el id del tipo de servicio a eliminar: ");
-                } else
-                {
-                    JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
-                             "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
-                }
-                break;
-            case 8:
-                Tutor tutor = new Tutor();
-                r = tutor.eliminar((int) combo_Eliminar.getSelectedItem());
-                if (r != 0)
-                {
-                    llenarCombo_IdTutor();
-                    JOptionPane.showMessageDialog(null, "Tutor eliminado");
-                    jLabel1.setText("Seleccione el id del tutor a eliminar: ");
-                } else
-                {
-                    JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
-                             "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
-                }
-                break;
-            case 9:
-                Ventas ventas = new Ventas();
-                r = ventas.eliminar((int) combo_Eliminar.getSelectedItem());
-                if (r != 0)
-                {
-                    llenarCombo_IdVentas();
-                    JOptionPane.showMessageDialog(null, "Venta eliminada");
-                    jLabel1.setText("Selecciona el id de la venta a eliminar: ");
-                } else
-                {
-                    JOptionPane.showMessageDialog(this, "Restricción de integridad violada",
-                             "Ocurrio un error", JOptionPane.ERROR_MESSAGE);
-                }
-                break;
-            default:
-                JOptionPane.showMessageDialog(this, "OCURRIO UN ERROR 7" + Entidad.eliminar, "Error", JOptionPane.ERROR_MESSAGE);
-                break;
-        }
-        combo_Eliminar.setVisible(true);
-        btn_Eliminar.setVisible(true);
-    }//GEN-LAST:event_btn_EliminarActionPerformed
+        jScrollPane1.setVisible(true);
+        datos.setVisible(true);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -350,7 +438,9 @@ public class Eliminar extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Eliminar;
     private javax.swing.JComboBox combo_Eliminar;
+    private javax.swing.JTable datos;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
     public void llenarCombo_IdCita()

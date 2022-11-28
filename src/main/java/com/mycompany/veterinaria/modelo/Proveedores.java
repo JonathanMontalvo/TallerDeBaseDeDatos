@@ -208,6 +208,61 @@ public class Proveedores
         return modelo;
     }
 
+    public DefaultTableModel consultaEspecifica(int idproveedor)
+    {
+        String[] campos =
+        {
+            "IDPROVEEDOR", "NOMBRE", "TELEFONO", "CORREO"
+        };
+        String[] registro = new String[4];
+        DefaultTableModel modelo = new DefaultTableModel(null, campos);
+        Connection conect = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try
+        {
+            String sql = "select * from Proveedores where idproveedor = ?";
+            conect = Conexion.Conectar();
+            ps = conect.prepareStatement(sql);
+            ps.setInt(1, idproveedor);
+            rs = ps.executeQuery();
+            while (rs.next())
+            {
+                registro[0] = rs.getString("idproveedor");
+                registro[1] = rs.getString("nombre");
+                registro[2] = rs.getString("telefono");
+                registro[3] = rs.getString("correo");
+                modelo.addRow(registro);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (conect != null)
+                {
+                    conect.close();
+                }
+
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(Proveedores.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return modelo;
+    }
+
     public int actualizar(String nombre, long telefono, String correo, int idproveedor)
     {
         int respuesta = 0;

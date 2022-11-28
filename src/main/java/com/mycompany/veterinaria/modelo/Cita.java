@@ -210,9 +210,81 @@ public class Cita
                 registro[2] = rs.getString("idmascota");
                 registro[3] = rs.getString("idconsulta");
                 registro[4] = rs.getString("fecha");
-                registro[4] = registro[4].substring(8, 10) + "/"
-                        + registro[4].substring(5, 7) + "/"
-                        + registro[4].substring(0, 4);
+                if (registro[4] != null)
+                {
+                    registro[4] = registro[4].substring(8, 10) + "/"
+                            + registro[4].substring(5, 7) + "/"
+                            + registro[4].substring(0, 4);
+                } else
+                {
+                    registro[4] = "Desconocida";
+                }
+                registro[5] = rs.getString("hora");
+                modelo.addRow(registro);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(Cita.class.getName()).log(Level.SEVERE, null, ex);
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (conect != null)
+                {
+                    conect.close();
+                }
+
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(Cita.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return modelo;
+    }
+
+    public DefaultTableModel consultaEspecifica(int idcita)
+    {
+        String[] campos =
+        {
+            "IDCITA", "IDSERVICIO", "IDMASCOTA", "IDCONSULTA", "FECHA", "HORA"
+        };
+        String[] registro = new String[6];
+        DefaultTableModel modelo = new DefaultTableModel(null, campos);
+        Connection conect = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try
+        {
+            String sql = "select * from Cita where idcita = ?";
+            conect = Conexion.Conectar();
+            ps = conect.prepareStatement(sql);
+            ps.setInt(1, idcita);
+            rs = ps.executeQuery();
+            while (rs.next())
+            {
+                registro[0] = rs.getString("idcita");
+                registro[1] = rs.getString("idservicio");
+                registro[2] = rs.getString("idmascota");
+                registro[3] = rs.getString("idconsulta");
+                registro[4] = rs.getString("fecha");
+                if (registro[4] != null)
+                {
+                    registro[4] = registro[4].substring(8, 10) + "/"
+                            + registro[4].substring(5, 7) + "/"
+                            + registro[4].substring(0, 4);
+                } else
+                {
+                    registro[4] = "Desconocida";
+                }
                 registro[5] = rs.getString("hora");
                 modelo.addRow(registro);
             }

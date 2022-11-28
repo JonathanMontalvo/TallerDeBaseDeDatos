@@ -8,6 +8,7 @@ import com.mycompany.veterinaria.modelo.Cita;
 import com.mycompany.veterinaria.modelo.Consultas;
 import com.mycompany.veterinaria.modelo.Mascota;
 import com.mycompany.veterinaria.modelo.TipoDeServicio;
+import com.mycompany.veterinaria.vista.Principal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -25,6 +26,9 @@ public class FormCita extends javax.swing.JFrame
      */
     public FormCita()
     {
+        Principal.cadenaTipoDeServicio = 1;
+        Principal.cadenaMascota = 0;
+        Principal.cadenaConsulta = 1;
         initComponents();
         llenarCombo_TipoServicio();
         llenarCombo_Mascota();

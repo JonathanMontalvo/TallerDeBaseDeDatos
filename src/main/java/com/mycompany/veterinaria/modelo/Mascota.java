@@ -296,6 +296,85 @@ public class Mascota
                 registro[5] = rs.getString("peso");
                 registro[6] = rs.getString("medida");
                 registro[7] = rs.getString("fechanacimiento");
+                if (registro[7] != null)
+                {
+                    registro[7] = registro[7].substring(8, 10)
+                            + "/" + registro[7].substring(5, 7)
+                            + "/" + registro[7].substring(0, 4);
+                } else
+                {
+                    registro[7] = "Desconocida";
+                }
+                registro[8] = rs.getString("detalles");
+                registro[9] = rs.getString("nombre");
+                modelo.addRow(registro);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (conect != null)
+                {
+                    conect.close();
+                }
+
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return modelo;
+    }
+
+    public DefaultTableModel consultaEspecifica(int idmascota)
+    {
+        String[] campos =
+        {
+            "IDMASCOTA", "IDTUTOR", "TIPO", "RAZA", "SEXO", "PESO", "MEDIDA", "FECHANACIMIENTO", "DETALLES", "NOMBRE"
+        };
+        String[] registro = new String[10];
+        DefaultTableModel modelo = new DefaultTableModel(null, campos);
+        Connection conect = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try
+        {
+            String sql = "select * from Mascota where idmascota = ?";
+            conect = Conexion.Conectar();
+            ps = conect.prepareStatement(sql);
+            ps.setInt(1, idmascota);
+            rs = ps.executeQuery();
+            while (rs.next())
+            {
+                registro[0] = rs.getString("idmascota");
+                registro[1] = rs.getString("idtutor");
+                registro[2] = rs.getString("tipo");
+                registro[3] = rs.getString("raza");
+                registro[4] = rs.getString("sexo");
+                registro[5] = rs.getString("peso");
+                registro[6] = rs.getString("medida");
+                registro[7] = rs.getString("fechanacimiento");
+                if (registro[7] != null)
+                {
+                    registro[7] = registro[7].substring(8, 10)
+                            + "/" + registro[7].substring(5, 7)
+                            + "/" + registro[7].substring(0, 4);
+                } else
+                {
+                    registro[7] = "Desconocida";
+                }
                 registro[8] = rs.getString("detalles");
                 registro[9] = rs.getString("nombre");
                 modelo.addRow(registro);

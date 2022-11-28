@@ -48,6 +48,10 @@ public class Consultar extends javax.swing.JFrame
             {
                 formWindowActivated(evt);
             }
+            public void windowClosed(java.awt.event.WindowEvent evt)
+            {
+                formWindowClosed(evt);
+            }
         });
 
         datos.setModel(new javax.swing.table.DefaultTableModel(
@@ -136,6 +140,12 @@ public class Consultar extends javax.swing.JFrame
         jScrollPane1.setVisible(true);
         datos.setVisible(true);
     }//GEN-LAST:event_formWindowActivated
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosed
+    {//GEN-HEADEREND:event_formWindowClosed
+        // TODO add your handling code here:
+        Entidad.consulta = 0;
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

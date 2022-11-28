@@ -248,6 +248,63 @@ public class Inventario
         return modelo;
     }
 
+    public DefaultTableModel consultaEspecifica(int idarticulo)
+    {
+        String[] campos =
+        {
+            "IDARTICULO", "IDPROVEEDOR", "TIPO", "NOMBRE", "CANTIDAD", "PRECIO"
+        };
+        String[] registro = new String[6];
+        DefaultTableModel modelo = new DefaultTableModel(null, campos);
+        Connection conect = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try
+        {
+            String sql = "select * from Inventario where idarticulo = ?";
+            conect = Conexion.Conectar();
+            ps = conect.prepareStatement(sql);
+            ps.setInt(1, idarticulo);
+            rs = ps.executeQuery();
+            while (rs.next())
+            {
+                registro[0] = rs.getString("idarticulo");
+                registro[1] = rs.getString("idproveedor");
+                registro[2] = rs.getString("tipo");
+                registro[3] = rs.getString("nombre");
+                registro[4] = rs.getString("cantidad");
+                registro[5] = rs.getString("precio");
+                modelo.addRow(registro);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (conect != null)
+                {
+                    conect.close();
+                }
+
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return modelo;
+    }
+
     public int actualizar(int idproveedor, String tipo, String nombre, int cantidad, double precio, int idarticulo)
     {
         int respuesta = 0;

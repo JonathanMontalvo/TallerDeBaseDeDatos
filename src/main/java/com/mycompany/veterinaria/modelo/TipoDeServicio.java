@@ -228,6 +228,62 @@ public class TipoDeServicio
         return modelo;
     }
 
+    public DefaultTableModel consultaEspecifica(int idservicio)
+    {
+        String[] campos =
+        {
+            "IDSERVICIO", "IDEMPLEADO", "NOMBRE", "TIPO", "PRECIO"
+        };
+        String[] registro = new String[5];
+        DefaultTableModel modelo = new DefaultTableModel(null, campos);
+        Connection conect = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try
+        {
+            String sql = "select * from TipoServicio where idservicio = ?";
+            conect = Conexion.Conectar();
+            ps = conect.prepareStatement(sql);
+            ps.setInt(1, idservicio);
+            rs = ps.executeQuery();
+            while (rs.next())
+            {
+                registro[0] = rs.getString("idservicio");
+                registro[1] = rs.getString("idempleado");
+                registro[2] = rs.getString("nombre");
+                registro[3] = rs.getString("tipo");
+                registro[4] = rs.getString("precio");
+                modelo.addRow(registro);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(TipoDeServicio.class.getName()).log(Level.SEVERE, null, ex);
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (conect != null)
+                {
+                    conect.close();
+                }
+
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(TipoDeServicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return modelo;
+    }
+
     public int actualizar(int idempleado, String nombre, String tipo, double precio, int idservicio)
     {
         int respuesta = 0;

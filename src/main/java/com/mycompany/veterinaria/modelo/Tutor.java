@@ -228,6 +228,62 @@ public class Tutor
         return modelo;
     }
 
+    public DefaultTableModel consultaEspecifica(int idtutor)
+    {
+        String[] campos =
+        {
+            "IDTUTOR", "NOMBRE", "TELEFONO", "CORREO", "DIRECCION"
+        };
+        String[] registro = new String[5];
+        DefaultTableModel modelo = new DefaultTableModel(null, campos);
+        Connection conect = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try
+        {
+            String sql = "select * from Tutor where idtutor = ?";
+            conect = Conexion.Conectar();
+            ps = conect.prepareStatement(sql);
+            ps.setInt(1, idtutor);
+            rs = ps.executeQuery();
+            while (rs.next())
+            {
+                registro[0] = rs.getString("idtutor");
+                registro[1] = rs.getString("nombre");
+                registro[2] = rs.getString("telefono");
+                registro[3] = rs.getString("correo");
+                registro[4] = rs.getString("direccion");
+                modelo.addRow(registro);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(Tutor.class.getName()).log(Level.SEVERE, null, ex);
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (conect != null)
+                {
+                    conect.close();
+                }
+
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(Tutor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return modelo;
+    }
+
     public int actualizar(String nombre, String telefono, String correo, String direccion, int idtutor)
     {
         int respuesta = 0;
