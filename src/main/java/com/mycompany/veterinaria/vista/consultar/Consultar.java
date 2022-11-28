@@ -86,59 +86,7 @@ public class Consultar extends javax.swing.JFrame
     private void formWindowActivated(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowActivated
     {//GEN-HEADEREND:event_formWindowActivated
         // TODO add your handling code here:
-        switch (Entidad.consulta)
-        {
-            case 1:
-                Cita obj_cita = new Cita();
-                datos.setModel(obj_cita.consultar());
-                this.setTitle("Consulta Cita");
-                break;
-            case 2:
-                Consultas obj_consultas = new Consultas();
-                datos.setModel(obj_consultas.consultar());
-                this.setTitle("Consulta Consultas");
-                break;
-            case 3:
-                Empleados obj_empleados = new Empleados();
-                datos.setModel(obj_empleados.consultar());
-                this.setTitle("Consulta Empleados");
-                break;
-            case 4:
-                Inventario obj_inventario = new Inventario();
-                datos.setModel(obj_inventario.consultar());
-                this.setTitle("Consulta Inventario");
-                break;
-            case 5:
-                Mascota obj_mascota = new Mascota();
-                datos.setModel(obj_mascota.consultar());
-                this.setTitle("Consulta Mascota");
-                break;
-            case 6:
-                Proveedores obj_proveedores = new Proveedores();
-                datos.setModel(obj_proveedores.consultar());
-                this.setTitle("Consulta Proveedores");
-                break;
-            case 7:
-                TipoDeServicio obj_tipoDeServicio = new TipoDeServicio();
-                datos.setModel(obj_tipoDeServicio.consultar());
-                this.setTitle("Consulta TipoDeServicio");
-                break;
-            case 8:
-                Tutor obj_tutor = new Tutor();
-                datos.setModel(obj_tutor.consultar());
-                this.setTitle("Consulta Tutor");
-                break;
-            case 9:
-                Ventas obj_ventas = new Ventas();
-                datos.setModel(obj_ventas.consultar());
-                this.setTitle("Consulta Ventas");
-                break;
-            default:
-                JOptionPane.showMessageDialog(this, "OCURRIO UN ERROR 3" + Principal.accion, "Error", JOptionPane.ERROR_MESSAGE);
-                break;
-        }
-        jScrollPane1.setVisible(true);
-        datos.setVisible(true);
+        
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowClosed(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosed
