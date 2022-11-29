@@ -4,9 +4,12 @@
  */
 package com.mycompany.veterinaria.vista.modificar;
 
+import com.mycompany.veterinaria.modelo.Consultas;
+import com.mycompany.veterinaria.vista.Principal;
+
 /**
  *
- * @author mauri
+ * @author Hernánez Vázquez Bryan, Montalvo Pérez Jonathan, Peña Reynoso Jesús
  */
 public class ModifConsultas extends javax.swing.JFrame
 {
@@ -16,6 +19,7 @@ public class ModifConsultas extends javax.swing.JFrame
      */
     public ModifConsultas()
     {
+        Principal.cadenaConsulta = 0;
         initComponents();
     }
 
@@ -29,21 +33,102 @@ public class ModifConsultas extends javax.swing.JFrame
     private void initComponents()
     {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel0 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        combo_Consulta = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        txt_Detalles = new javax.swing.JTextField();
+        btn_Modificar = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Editar Consulta");
+
+        jLabel0.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel0.setText("Seleccione los campos que desea modificar: ");
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setText("Seleccione la Consulta a editar: ");
+
+        combo_Consulta.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        combo_Consulta.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                combo_ConsultaActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel2.setText("Cambie los detalles: ");
+
+        txt_Detalles.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+
+        btn_Modificar.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        btn_Modificar.setText("Modificar");
+        btn_Modificar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btn_ModificarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txt_Detalles, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(combo_Consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel0, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(252, 252, 252)
+                .addComponent(btn_Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo_Consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_Detalles, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(btn_Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void combo_ConsultaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_ConsultaActionPerformed
+    {//GEN-HEADEREND:event_combo_ConsultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_ConsultaActionPerformed
+
+    private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_ModificarActionPerformed
+    {//GEN-HEADEREND:event_btn_ModificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_ModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -91,5 +176,11 @@ public class ModifConsultas extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Modificar;
+    private javax.swing.JComboBox<Consultas> combo_Consulta;
+    private javax.swing.JLabel jLabel0;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField txt_Detalles;
     // End of variables declaration//GEN-END:variables
 }

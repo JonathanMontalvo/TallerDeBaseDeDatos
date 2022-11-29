@@ -66,8 +66,8 @@ public class ModifCita extends javax.swing.JFrame
         elegirFecha = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         combo_horas = new javax.swing.JComboBox();
-        combo_Minutos = new javax.swing.JComboBox();
         jTextField1 = new javax.swing.JTextField();
+        combo_Minutos = new javax.swing.JComboBox();
         btn_Modificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -130,12 +130,12 @@ public class ModifCita extends javax.swing.JFrame
         combo_horas.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         combo_horas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "21", "22", "23" }));
 
-        combo_Minutos.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        combo_Minutos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-
         jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jTextField1.setText(":");
+
+        combo_Minutos.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        combo_Minutos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
 
         btn_Modificar.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         btn_Modificar.setText("Modificar");
