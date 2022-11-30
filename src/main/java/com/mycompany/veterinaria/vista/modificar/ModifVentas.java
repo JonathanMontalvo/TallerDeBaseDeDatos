@@ -6,6 +6,11 @@ package com.mycompany.veterinaria.vista.modificar;
 
 import com.mycompany.veterinaria.modelo.Inventario;
 import com.mycompany.veterinaria.modelo.TipoDeServicio;
+import com.mycompany.veterinaria.modelo.Ventas;
+import com.mycompany.veterinaria.vista.Principal;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +24,13 @@ public class ModifVentas extends javax.swing.JFrame
      */
     public ModifVentas()
     {
+        Principal.cadenaInventario = 1;
+        Principal.cadenaTipoDeServicio = 1;
         initComponents();
+        llenarCombo_IdVentas();
+        llenarCombo_IdArticulo();
+        llenarCombo_IdServicio();
+        combo_Venta.setSelectedIndex(0);
     }
 
     /**
@@ -34,7 +45,7 @@ public class ModifVentas extends javax.swing.JFrame
 
         jLabel1 = new javax.swing.JLabel();
         jLabel0 = new javax.swing.JLabel();
-        combo_Venta = new javax.swing.JComboBox();
+        combo_Venta = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -85,6 +96,7 @@ public class ModifVentas extends javax.swing.JFrame
         combo_Servicio.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         combo_FormaPago.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        combo_FormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Débito", "Crédito" }));
 
         txt_Detalles.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
@@ -180,11 +192,96 @@ public class ModifVentas extends javax.swing.JFrame
     private void combo_VentaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_VentaActionPerformed
     {//GEN-HEADEREND:event_combo_VentaActionPerformed
         // TODO add your handling code here:
+        int idArticulo = 0;
+        int idServicio = 0;
+        String formaPago = "";
+        String detalles = "";
+        double total = 0.0;
+
+        Ventas ventas = (Ventas) combo_Venta.getSelectedItem();
+        idArticulo = ventas.getIdarticulo();
+        idServicio = ventas.getIdservicio();
+        if ("D".equals(ventas.getFormapago()))
+        {
+            formaPago = "Débito";
+        } else
+        {
+            formaPago = "Crédito";
+        }
+        detalles = ventas.getDetalles();
+        total = ventas.getTotal();
+
+        for (int i = 0; i < combo_Articulo.getItemCount(); i++)
+        {
+            combo_Articulo.setSelectedIndex(i);
+            Inventario inventario = (Inventario) combo_Articulo.getSelectedItem();
+            if (inventario.getIdarticulo() == idArticulo)
+            {
+                break;
+            }
+        }
+        for (int i = 0; i < combo_Servicio.getItemCount(); i++)
+        {
+            combo_Servicio.setSelectedIndex(i);
+            TipoDeServicio tipodeservicio = (TipoDeServicio) combo_Servicio.getSelectedItem();
+            if (tipodeservicio.getIdservicio() == idServicio)
+            {
+                break;
+            }
+        }
+        combo_FormaPago.setSelectedItem(formaPago);
+        txt_Detalles.setText(detalles);
+        txt_Total.setText(String.valueOf(total));
     }//GEN-LAST:event_combo_VentaActionPerformed
 
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_ModificarActionPerformed
     {//GEN-HEADEREND:event_btn_ModificarActionPerformed
         // TODO add your handling code here:
+        int idVenta = 0;
+        int idArticulo = 0;
+        int idServicio = 0;
+        String formaPago = "";
+        String detalles = "";
+        double total = 0.0;
+
+        Ventas ventas = (Ventas) combo_Venta.getSelectedItem();
+        Inventario inventario = (Inventario) combo_Articulo.getSelectedItem();
+        TipoDeServicio tipodeservicio = (TipoDeServicio) combo_Servicio.getSelectedItem();
+
+        if (txt_Detalles.getText().equals("") || txt_Total.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else
+        {
+            try
+            {
+                idVenta = ventas.getIdventa();
+                idArticulo = inventario.getIdarticulo();
+                idServicio = tipodeservicio.getIdservicio();
+                if ("Débito".equals(String.valueOf(combo_FormaPago.getSelectedItem())))
+                {
+                    formaPago = "D";
+                } else
+                {
+                    formaPago = "C";
+                }
+                detalles = txt_Detalles.getText();
+                total = Double.parseDouble(txt_Total.getText());
+
+                Ventas obj_venta = new Ventas();
+                int r = obj_venta.actualizar(idArticulo, idServicio, formaPago, detalles, total, idVenta);
+                if (r != 0)
+                {
+                    JOptionPane.showMessageDialog(this, "La venta fue actualizada correctamente");
+                } else
+                {
+                    JOptionPane.showMessageDialog(this, "Ocurrio un error");
+                }
+            } catch (NumberFormatException nFE)
+            {
+                JOptionPane.showMessageDialog(this, "Favor de solo capturar números reales y no cadenas de texto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btn_ModificarActionPerformed
 
     /**
@@ -237,7 +334,7 @@ public class ModifVentas extends javax.swing.JFrame
     private javax.swing.JComboBox<Inventario> combo_Articulo;
     private javax.swing.JComboBox<String> combo_FormaPago;
     private javax.swing.JComboBox<TipoDeServicio> combo_Servicio;
-    private javax.swing.JComboBox combo_Venta;
+    private javax.swing.JComboBox<Ventas> combo_Venta;
     private javax.swing.JLabel jLabel0;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -248,4 +345,42 @@ public class ModifVentas extends javax.swing.JFrame
     private javax.swing.JTextField txt_Detalles;
     private javax.swing.JTextField txt_Total;
     // End of variables declaration//GEN-END:variables
+    public void llenarCombo_IdArticulo()
+    {
+        combo_Articulo.removeAllItems();
+        Inventario obj_inventario = new Inventario();
+        ArrayList listainventario = obj_inventario.combo_Inventario();
+        Iterator iter = listainventario.iterator();
+        while (iter.hasNext())
+        {
+            Inventario inventario = (Inventario) iter.next();
+            combo_Articulo.addItem(inventario);
+        }
+    }
+
+    public void llenarCombo_IdVentas()
+    {
+        combo_Venta.removeAllItems();
+        Ventas obj_ventas = new Ventas();
+        ArrayList listaventas = obj_ventas.combo_Ventas();
+        Iterator iter = listaventas.iterator();
+        while (iter.hasNext())
+        {
+            Ventas ventas = (Ventas) iter.next();
+            combo_Venta.addItem(ventas);
+        }
+    }
+
+    public void llenarCombo_IdServicio()
+    {
+        combo_Servicio.removeAllItems();
+        TipoDeServicio obj_servicio = new TipoDeServicio();
+        ArrayList listaservicio = obj_servicio.combo_TipoDeServicio();
+        Iterator iter = listaservicio.iterator();
+        while (iter.hasNext())
+        {
+            TipoDeServicio servico = (TipoDeServicio) iter.next();
+            combo_Servicio.addItem(servico);
+        }
+    }
 }
