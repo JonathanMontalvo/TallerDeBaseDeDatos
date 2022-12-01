@@ -9,6 +9,7 @@ import com.mycompany.veterinaria.modelo.Proveedores;
 import com.mycompany.veterinaria.vista.Principal;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,7 +29,7 @@ public class ModifInventario extends javax.swing.JFrame
         llenarCombo_IdArticulo();
         llenarCombo_IdProveedor();
     }
-
+    
     public void llenarCombo_IdArticulo()
     {
         combo_Inventario.removeAllItems();
@@ -41,7 +42,7 @@ public class ModifInventario extends javax.swing.JFrame
             combo_Inventario.addItem(inventario);
         }
     }
-
+    
     public void llenarCombo_IdProveedor()
     {
         combo_Proveedor.removeAllItems();
@@ -87,7 +88,7 @@ public class ModifInventario extends javax.swing.JFrame
         jLabel1.setText("Seleccione los campos que desea modificar: ");
 
         jLabel0.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel0.setText("Seleccione el Inventario a editar: ");
+        jLabel0.setText("Seleccione el Artículo a editar: ");
 
         combo_Inventario.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         combo_Inventario.addActionListener(new java.awt.event.ActionListener()
@@ -216,10 +217,18 @@ public class ModifInventario extends javax.swing.JFrame
         // TODO add your handling code here:
         int idproveedor = 0;
         String tipo = "";
-
+        String nombre = "";
+        int cantidad = 0;
+        double precio = 0.0;
+        
         Inventario inventario = (Inventario) combo_Inventario.getSelectedItem();
-
+        
         idproveedor = inventario.getIdarticulo();
+        tipo = inventario.getTipo();
+        nombre = inventario.getNombre();
+        cantidad = inventario.getCantidad();
+        precio = inventario.getPrecio();
+        
         for (int i = 0; i < combo_Proveedor.getItemCount(); i++)
         {
             combo_Proveedor.setSelectedIndex(i);
@@ -229,11 +238,53 @@ public class ModifInventario extends javax.swing.JFrame
                 break;
             }
         }
+        txt_Tipo.setText(tipo);
+        txt_Nombre.setText(nombre);
+        txt_Cantidad.setText(String.valueOf(cantidad));
+        txt_Precio.setText(String.valueOf(precio));
     }//GEN-LAST:event_combo_InventarioActionPerformed
 
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_ModificarActionPerformed
     {//GEN-HEADEREND:event_btn_ModificarActionPerformed
         // TODO add your handling code here:
+        int idproveedor = 0;
+        String tipo = "";
+        String nombre = "";
+        int cantidad = 0;
+        double precio = 0.0;
+        int idarticulo = 0;
+        
+        Proveedores provedores = (Proveedores) combo_Proveedor.getSelectedItem();
+        Inventario inventario = (Inventario) combo_Inventario.getSelectedItem();
+        
+        if (txt_Tipo.getText().equals("") || txt_Nombre.getText().equals("") || txt_Cantidad.getText().equals("") || txt_Precio.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else
+        {
+            try
+            {
+                idproveedor = provedores.getIdproveedor();
+                tipo = txt_Tipo.getText();
+                nombre = txt_Nombre.getText();
+                cantidad = Integer.parseInt(txt_Cantidad.getText());
+                precio = Double.parseDouble(txt_Precio.getText());
+                idarticulo = inventario.getIdarticulo();
+                
+                Inventario obj_inventario = new Inventario();
+                int r = obj_inventario.actualizar(idproveedor, tipo, nombre, cantidad, precio, idarticulo);
+                if (r != 0)
+                {
+                    JOptionPane.showMessageDialog(this, "El artículo fue actualizado correctamente");
+                } else
+                {
+                    JOptionPane.showMessageDialog(this, "Ocurrio un error");
+                }
+            } catch (NumberFormatException nFE)
+            {
+                JOptionPane.showMessageDialog(this, "Favor de solo capturar números reales y no cadenas de texto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btn_ModificarActionPerformed
 
     /**

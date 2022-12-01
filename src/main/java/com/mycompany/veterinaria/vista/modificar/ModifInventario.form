@@ -128,7 +128,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Seleccione el Inventario a editar: "/>
+        <Property name="text" type="java.lang.String" value="Seleccione el Art&#xed;culo a editar: "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="combo_Inventario">
