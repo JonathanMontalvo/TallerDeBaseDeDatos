@@ -7,6 +7,8 @@ package com.mycompany.veterinaria.vista.modificar;
 import com.mycompany.veterinaria.modelo.Inventario;
 import com.mycompany.veterinaria.modelo.Proveedores;
 import com.mycompany.veterinaria.vista.Principal;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -21,7 +23,36 @@ public class ModifInventario extends javax.swing.JFrame
     public ModifInventario()
     {
         Principal.cadenaInventario = 0;
+        Principal.cadenaProveedor = 1;
         initComponents();
+        llenarCombo_IdArticulo();
+        llenarCombo_IdProveedor();
+    }
+
+    public void llenarCombo_IdArticulo()
+    {
+        combo_Inventario.removeAllItems();
+        Inventario obj_inventario = new Inventario();
+        ArrayList listainventario = obj_inventario.combo_Inventario();
+        Iterator iter = listainventario.iterator();
+        while (iter.hasNext())
+        {
+            Inventario inventario = (Inventario) iter.next();
+            combo_Inventario.addItem(inventario);
+        }
+    }
+
+    public void llenarCombo_IdProveedor()
+    {
+        combo_Proveedor.removeAllItems();
+        Proveedores obj_proveedores = new Proveedores();
+        ArrayList listaproveedores = obj_proveedores.combo_Proveedores();
+        Iterator iter = listaproveedores.iterator();
+        while (iter.hasNext())
+        {
+            Proveedores proveedores = (Proveedores) iter.next();
+            combo_Proveedor.addItem(proveedores);
+        }
     }
 
     /**
@@ -183,6 +214,21 @@ public class ModifInventario extends javax.swing.JFrame
     private void combo_InventarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_InventarioActionPerformed
     {//GEN-HEADEREND:event_combo_InventarioActionPerformed
         // TODO add your handling code here:
+        int idproveedor = 0;
+        String tipo = "";
+
+        Inventario inventario = (Inventario) combo_Inventario.getSelectedItem();
+
+        idproveedor = inventario.getIdarticulo();
+        for (int i = 0; i < combo_Proveedor.getItemCount(); i++)
+        {
+            combo_Proveedor.setSelectedIndex(i);
+            Proveedores proveedor = (Proveedores) combo_Proveedor.getSelectedItem();
+            if (proveedor.getIdproveedor() == idproveedor)
+            {
+                break;
+            }
+        }
     }//GEN-LAST:event_combo_InventarioActionPerformed
 
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_ModificarActionPerformed

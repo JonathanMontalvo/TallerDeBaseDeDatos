@@ -7,6 +7,14 @@ package com.mycompany.veterinaria.vista.modificar;
 import com.mycompany.veterinaria.modelo.Mascota;
 import com.mycompany.veterinaria.modelo.Tutor;
 import com.mycompany.veterinaria.vista.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,7 +29,10 @@ public class ModifMascota extends javax.swing.JFrame
     public ModifMascota()
     {
         Principal.cadenaMascota = 0;
+        Principal.cadenaTutor = 0;
         initComponents();
+        llenarCombo_IdTutor();
+        llenarCombo_IdMascota();
     }
 
     /**
@@ -112,6 +123,7 @@ public class ModifMascota extends javax.swing.JFrame
         txt_Raza.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         combo_Sexo.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        combo_Sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
 
         txt_Peso.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
@@ -246,11 +258,132 @@ public class ModifMascota extends javax.swing.JFrame
     private void combo_MascotaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_MascotaActionPerformed
     {//GEN-HEADEREND:event_combo_MascotaActionPerformed
         // TODO add your handling code here:
+        int idtutor = 0;
+        String nombre = "";
+        String tipo = "";
+        String raza = "";
+        String sexo = "";
+        double peso = 0.0;
+        double medida = 0.0;
+        String fechanacimiento = "";
+        String detalles = "";
+
+        Mascota mascota = (Mascota) combo_Mascota.getSelectedItem();
+        idtutor = mascota.getIdtutor();
+        nombre = mascota.getNombre();
+        tipo = mascota.getTipo();
+        raza = mascota.getRaza();
+        sexo = mascota.getSexo();
+        peso = mascota.getPeso();
+        medida = mascota.getMedida();
+        fechanacimiento = mascota.getFechanacimiento();
+        detalles = mascota.getDetalles();
+        if (fechanacimiento != null)
+        {
+            fechanacimiento = fechanacimiento.toString().substring(8, 10)
+                    + "/" + fechanacimiento.toString().substring(5, 7)
+                    + "/" + fechanacimiento.toString().substring(2, 4);
+            try
+            {
+                SimpleDateFormat fechaParseada = new SimpleDateFormat("dd/MM/yy");
+                Date fechaFormateada = fechaParseada.parse(fechanacimiento);
+                elegirFecha.setDate(fechaFormateada);
+            } catch (ParseException ex)
+            {
+                Logger.getLogger(ModifMascota.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else
+        {
+            elegirFecha.setDate(null);
+        }
+        fechanacimiento = "";
+        txt_Nombre.setText(nombre);
+        for (int i = 0; i < combo_Tutor.getItemCount(); i++)
+        {
+            combo_Tutor.setSelectedIndex(i);
+            Tutor tutor = (Tutor) combo_Tutor.getSelectedItem();
+            if (tutor.getIdtutor() == idtutor)
+            {
+                break;
+            }
+        }
+        txt_Tipo.setText(tipo);
+        txt_Raza.setText(raza);
+
+        if ("Femenino".equals(sexo))
+        {
+            combo_Sexo.setSelectedIndex(0);
+        } else
+        {
+            combo_Sexo.setSelectedIndex(1);
+        }
+
+        txt_Peso.setText(String.valueOf(peso));
+        txt_Medida.setText(String.valueOf(medida));
+        txt_Detalles.setText(detalles);
     }//GEN-LAST:event_combo_MascotaActionPerformed
 
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_ModificarActionPerformed
     {//GEN-HEADEREND:event_btn_ModificarActionPerformed
         // TODO add your handling code here:
+        int idmascota = 0;
+        int idtutor = 0;
+        String nombre = "";
+        String tipo = "";
+        String raza = "";
+        String sexo = "";
+        double peso = 0.0;
+        double medida = 0.0;
+        String fechanacimiento = null;
+        String detalles = "";
+
+        Tutor tutor = (Tutor) combo_Tutor.getSelectedItem();
+        Mascota mascota = (Mascota) combo_Mascota.getSelectedItem();
+
+        if (txt_Tipo.getText().equals("") || txt_Raza.getText().equals("") || txt_Peso.getText().equals("") || txt_Medida.getText().equals("") || txt_Detalles.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else
+        {
+            try
+            {
+                if ((elegirFecha.getDate() != null))
+                {
+                    Date date = elegirFecha.getDate();
+                    long d = date.getTime();
+                    java.sql.Date f = new java.sql.Date(d);
+                    fechanacimiento = f.toString().substring(8, 10) + "/" + f.toString().substring(5, 7) + "/" + f.toString().substring(2, 4);
+                }
+                
+                nombre = txt_Nombre.getText();
+                idtutor = tutor.getIdtutor();
+                tipo = txt_Tipo.getText();
+                raza = txt_Raza.getText();
+                if ("Femenino".equals(String.valueOf(combo_Sexo.getSelectedItem())))
+                {
+                    sexo = "Femenino";
+                } else
+                {
+                    sexo = "Masculino";
+                }
+                peso = Double.parseDouble(txt_Peso.getText());
+                medida = Double.parseDouble(txt_Medida.getText());
+                detalles = txt_Detalles.getText();
+                idmascota= mascota.getIdmascota();
+                Mascota obj_mascota = new Mascota();
+                int r = obj_mascota.actualizar(idtutor, tipo, raza, sexo, peso, medida, fechanacimiento, detalles, nombre, idmascota);
+                if (r != 0)
+                {
+                    JOptionPane.showMessageDialog(null, "La mascota fue actualizada correctamente");
+                } else
+                {
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error");
+                }
+            } catch (NumberFormatException nFE)
+            {
+                JOptionPane.showMessageDialog(this, "Favor de solo capturar números reales y no cadenas de texto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btn_ModificarActionPerformed
 
     /**
@@ -322,4 +455,29 @@ public class ModifMascota extends javax.swing.JFrame
     private javax.swing.JTextField txt_Raza;
     private javax.swing.JTextField txt_Tipo;
     // End of variables declaration//GEN-END:variables
+    public void llenarCombo_IdTutor()
+    {
+        combo_Tutor.removeAllItems();
+        Tutor obj_tutor = new Tutor();
+        ArrayList listatutor = obj_tutor.combo_Tutor();
+        Iterator iter = listatutor.iterator();
+        while (iter.hasNext())
+        {
+            Tutor tutor = (Tutor) iter.next();
+            combo_Tutor.addItem(tutor);
+        }
+    }
+
+    public void llenarCombo_IdMascota()
+    {
+        combo_Mascota.removeAllItems();
+        Mascota obj_mascota = new Mascota();
+        ArrayList listamascota = obj_mascota.combo_Mascota();
+        Iterator iter = listamascota.iterator();
+        while (iter.hasNext())
+        {
+            Mascota mascota = (Mascota) iter.next();
+            combo_Mascota.addItem(mascota);
+        }
+    }
 }
