@@ -28,6 +28,7 @@ public class ModifInventario extends javax.swing.JFrame
         initComponents();
         llenarCombo_IdArticulo();
         llenarCombo_IdProveedor();
+        combo_Inventario.setSelectedIndex(0);
     }
     
     public void llenarCombo_IdArticulo()

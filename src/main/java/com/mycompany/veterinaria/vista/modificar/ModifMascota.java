@@ -33,6 +33,7 @@ public class ModifMascota extends javax.swing.JFrame
         initComponents();
         llenarCombo_IdTutor();
         llenarCombo_IdMascota();
+        combo_Mascota.setSelectedIndex(0);
     }
 
     /**
@@ -267,7 +268,7 @@ public class ModifMascota extends javax.swing.JFrame
         double medida = 0.0;
         String fechanacimiento = "";
         String detalles = "";
-
+        
         Mascota mascota = (Mascota) combo_Mascota.getSelectedItem();
         idtutor = mascota.getIdtutor();
         nombre = mascota.getNombre();
@@ -309,7 +310,7 @@ public class ModifMascota extends javax.swing.JFrame
         }
         txt_Tipo.setText(tipo);
         txt_Raza.setText(raza);
-
+        
         if ("Femenino".equals(sexo))
         {
             combo_Sexo.setSelectedIndex(0);
@@ -317,7 +318,7 @@ public class ModifMascota extends javax.swing.JFrame
         {
             combo_Sexo.setSelectedIndex(1);
         }
-
+        
         txt_Peso.setText(String.valueOf(peso));
         txt_Medida.setText(String.valueOf(medida));
         txt_Detalles.setText(detalles);
@@ -336,10 +337,10 @@ public class ModifMascota extends javax.swing.JFrame
         double medida = 0.0;
         String fechanacimiento = null;
         String detalles = "";
-
+        
         Tutor tutor = (Tutor) combo_Tutor.getSelectedItem();
         Mascota mascota = (Mascota) combo_Mascota.getSelectedItem();
-
+        
         if (txt_Tipo.getText().equals("") || txt_Raza.getText().equals("") || txt_Peso.getText().equals("") || txt_Medida.getText().equals("") || txt_Detalles.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -369,7 +370,7 @@ public class ModifMascota extends javax.swing.JFrame
                 peso = Double.parseDouble(txt_Peso.getText());
                 medida = Double.parseDouble(txt_Medida.getText());
                 detalles = txt_Detalles.getText();
-                idmascota= mascota.getIdmascota();
+                idmascota = mascota.getIdmascota();
                 Mascota obj_mascota = new Mascota();
                 int r = obj_mascota.actualizar(idtutor, tipo, raza, sexo, peso, medida, fechanacimiento, detalles, nombre, idmascota);
                 if (r != 0)
@@ -467,7 +468,7 @@ public class ModifMascota extends javax.swing.JFrame
             combo_Tutor.addItem(tutor);
         }
     }
-
+    
     public void llenarCombo_IdMascota()
     {
         combo_Mascota.removeAllItems();
