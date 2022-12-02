@@ -6,6 +6,11 @@ package com.mycompany.veterinaria.vista.insertar;
 
 import com.mycompany.veterinaria.modelo.Mascota;
 import com.mycompany.veterinaria.modelo.Tutor;
+import com.mycompany.veterinaria.vista.Principal;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +24,23 @@ public class FormMascota extends javax.swing.JFrame
      */
     public FormMascota()
     {
+        Principal.cadenaTutor = 0;
         initComponents();
+        llenarCombo_IdTutor();
+        combo_Tutor.setSelectedIndex(0);
+    }
+
+    public void llenarCombo_IdTutor()
+    {
+        combo_Tutor.removeAllItems();
+        Tutor obj_tutor = new Tutor();
+        ArrayList listatutor = obj_tutor.combo_Tutor();
+        Iterator iter = listatutor.iterator();
+        while (iter.hasNext())
+        {
+            Tutor tutor = (Tutor) iter.next();
+            combo_Tutor.addItem(tutor);
+        }
     }
 
     /**
@@ -32,12 +53,11 @@ public class FormMascota extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jLabel0 = new javax.swing.JLabel();
-        combo_Mascota = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         txt_Nombre = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         combo_Tutor = new javax.swing.JComboBox<>();
+        txt_TutorNombre = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txt_Tipo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -57,18 +77,6 @@ public class FormMascota extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insertar Mascota");
 
-        jLabel0.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel0.setText("Seleccione la Mascota: ");
-
-        combo_Mascota.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        combo_Mascota.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                combo_MascotaActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel5.setText("Cambie el nombre: ");
 
@@ -78,6 +86,16 @@ public class FormMascota extends javax.swing.JFrame
         jLabel6.setText("Seleccione el tutor: ");
 
         combo_Tutor.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        combo_Tutor.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                combo_TutorActionPerformed(evt);
+            }
+        });
+
+        txt_TutorNombre.setEditable(false);
+        txt_TutorNombre.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel7.setText("Cambie el tipo: ");
@@ -94,6 +112,7 @@ public class FormMascota extends javax.swing.JFrame
         jLabel9.setText("Seleccione el sexo: ");
 
         combo_Sexo.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        combo_Sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel10.setText("Cambie el peso: ");
@@ -141,10 +160,6 @@ public class FormMascota extends javax.swing.JFrame
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                                     .addComponent(txt_Detalles, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel0, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(combo_Mascota, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(elegirFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -159,9 +174,12 @@ public class FormMascota extends javax.swing.JFrame
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txt_Nombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(combo_Tutor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(combo_Tutor, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txt_TutorNombre))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -187,18 +205,15 @@ public class FormMascota extends javax.swing.JFrame
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel0, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo_Mascota, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo_Tutor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(combo_Tutor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_TutorNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,15 +251,75 @@ public class FormMascota extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void combo_MascotaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_MascotaActionPerformed
-    {//GEN-HEADEREND:event_combo_MascotaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo_MascotaActionPerformed
-
     private void btn_InsertarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_InsertarActionPerformed
     {//GEN-HEADEREND:event_btn_InsertarActionPerformed
         // TODO add your handling code here:
+        String nombre = "";
+        int idtutor = 0;
+        String tipo = "";
+        String raza = "";
+        String sexo = "";
+        double peso = 0.0;
+        double medida = 0.0;
+        String fechanacimiento = null;
+        String detalles = "";
+        Tutor obj_tutor = (Tutor) combo_Tutor.getSelectedItem();
+
+        if (txt_Nombre.getText().equals("") || txt_Tipo.getText().equals("") || txt_Raza.getText().equals("") || txt_Peso.getText().equals("") || txt_Medida.getText().equals("") || txt_Detalles.getText().equals("") || txt_Nombre.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else
+        {
+            try
+            {
+                if ((elegirFecha.getDate() != null))
+                {
+                    Date date = elegirFecha.getDate();
+                    long d = date.getTime();
+                    java.sql.Date f = new java.sql.Date(d);
+                    fechanacimiento = f.toString().substring(8, 10) + "/" + f.toString().substring(5, 7) + "/" + f.toString().substring(2, 4);
+                }
+                nombre = txt_Nombre.getText();
+                idtutor = obj_tutor.getIdtutor();
+                tipo = txt_Tipo.getText();
+                raza = txt_Raza.getText();
+                if ("Femenino".equals(String.valueOf(combo_Sexo.getSelectedItem())))
+                {
+                    sexo = "Femenino";
+                } else
+                {
+                    sexo = "Masculino";
+                }
+                peso = Double.parseDouble(txt_Peso.getText());
+                medida = Double.parseDouble(txt_Medida.getText());
+                detalles = txt_Detalles.getText();
+
+                Mascota obj_mascota = new Mascota();
+                int r = obj_mascota.insertar(idtutor, tipo, raza, sexo, peso, medida, fechanacimiento, detalles, nombre);
+                if (r != 0)
+                {
+                    JOptionPane.showMessageDialog(null, "La venta fue registrada correctamente");
+                } else
+                {
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error");
+                }
+            } catch (NumberFormatException nFE)
+            {
+                JOptionPane.showMessageDialog(this, "Favor de solo capturar números reales y no cadenas de texto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btn_InsertarActionPerformed
+
+    private void combo_TutorActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_TutorActionPerformed
+    {//GEN-HEADEREND:event_combo_TutorActionPerformed
+        // TODO add your handling code here:
+        String nombre = "";
+        Tutor tutor = (Tutor) combo_Tutor.getSelectedItem();
+
+        nombre = tutor.getNombre();
+
+        txt_TutorNombre.setText(nombre);
+    }//GEN-LAST:event_combo_TutorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,11 +368,9 @@ public class FormMascota extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Insertar;
-    private javax.swing.JComboBox<Mascota> combo_Mascota;
     private javax.swing.JComboBox<String> combo_Sexo;
     private javax.swing.JComboBox<Tutor> combo_Tutor;
     private com.toedter.calendar.JDateChooser elegirFecha;
-    private javax.swing.JLabel jLabel0;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
@@ -313,5 +386,6 @@ public class FormMascota extends javax.swing.JFrame
     private javax.swing.JTextField txt_Peso;
     private javax.swing.JTextField txt_Raza;
     private javax.swing.JTextField txt_Tipo;
+    private javax.swing.JTextField txt_TutorNombre;
     // End of variables declaration//GEN-END:variables
 }

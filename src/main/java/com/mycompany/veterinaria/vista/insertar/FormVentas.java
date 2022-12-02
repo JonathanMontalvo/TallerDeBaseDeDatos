@@ -6,6 +6,11 @@ package com.mycompany.veterinaria.vista.insertar;
 
 import com.mycompany.veterinaria.modelo.Inventario;
 import com.mycompany.veterinaria.modelo.TipoDeServicio;
+import com.mycompany.veterinaria.modelo.Ventas;
+import com.mycompany.veterinaria.vista.Principal;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,12 +19,45 @@ import com.mycompany.veterinaria.modelo.TipoDeServicio;
 public class FormVentas extends javax.swing.JFrame
 {
 
+    private static boolean activarComboArticulo;
+
     /**
      * Creates new form FormVentas
      */
     public FormVentas()
     {
+        activarComboArticulo = false;
+        Principal.cadenaInventario = 1;
+        Principal.cadenaTipoDeServicio = 1;
         initComponents();
+        llenarCombo_IdArticulo();
+        llenarCombo_IdServicio();
+    }
+
+    public void llenarCombo_IdArticulo()
+    {
+        combo_Articulo.removeAllItems();
+        Inventario obj_inventario = new Inventario();
+        ArrayList listainventario = obj_inventario.combo_Inventario();
+        Iterator iter = listainventario.iterator();
+        while (iter.hasNext())
+        {
+            Inventario inventario = (Inventario) iter.next();
+            combo_Articulo.addItem(inventario);
+        }
+    }
+
+    public void llenarCombo_IdServicio()
+    {
+        combo_Servicio.removeAllItems();
+        TipoDeServicio obj_servicio = new TipoDeServicio();
+        ArrayList listaservicio = obj_servicio.combo_TipoDeServicio();
+        Iterator iter = listaservicio.iterator();
+        while (iter.hasNext())
+        {
+            TipoDeServicio servico = (TipoDeServicio) iter.next();
+            combo_Servicio.addItem(servico);
+        }
     }
 
     /**
@@ -32,8 +70,6 @@ public class FormVentas extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jLabel0 = new javax.swing.JLabel();
-        combo_Venta = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         combo_Articulo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
@@ -49,41 +85,45 @@ public class FormVentas extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insertar Venta");
 
-        jLabel0.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel0.setText("Seleccione la Venta: ");
-
-        combo_Venta.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        combo_Venta.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                combo_VentaActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setText("Seleccione el articulo: ");
 
         combo_Articulo.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        combo_Articulo.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                combo_ArticuloActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel3.setText("Seleccione el servicio:  ");
 
         combo_Servicio.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        combo_Servicio.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                combo_ServicioActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel4.setText("Seleccione la forma de pago:  ");
 
         combo_FormaPago.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        combo_FormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Débito", "Crédito" }));
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel5.setText("Cambie los detalles: ");
+        jLabel5.setText("Escriba los detalles: ");
 
         txt_Detalles.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel6.setText("Cambie el total:  ");
+        jLabel6.setText("Ingrese el total:  ");
 
+        txt_Total.setEditable(false);
         txt_Total.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         btn_Insertar.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -124,23 +164,15 @@ public class FormVentas extends javax.swing.JFrame
                         .addComponent(btn_Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(226, 226, 226))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(combo_Articulo, 0, 360, Short.MAX_VALUE)
-                            .addComponent(combo_Venta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(combo_Articulo, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel0, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo_Venta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(combo_Articulo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -169,15 +201,82 @@ public class FormVentas extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void combo_VentaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_VentaActionPerformed
-    {//GEN-HEADEREND:event_combo_VentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo_VentaActionPerformed
-
     private void btn_InsertarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_InsertarActionPerformed
     {//GEN-HEADEREND:event_btn_InsertarActionPerformed
         // TODO add your handling code here:
+        int idarticulo = 0;
+        int idservicio = 0;
+        String formapago = "";
+        String detalles = "";
+        double precio = 0.0;
+        Inventario obj_inventario = (Inventario) combo_Articulo.getSelectedItem();
+        TipoDeServicio obj_servicio = (TipoDeServicio) combo_Servicio.getSelectedItem();
+
+        if (txt_Detalles.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else
+        {
+            idarticulo = obj_inventario.getIdarticulo();
+            idservicio = obj_servicio.getIdservicio();
+            if ((String) combo_FormaPago.getSelectedItem() == "Débito")
+            {
+                formapago = "D";
+            } else
+            {
+                formapago = "C";
+            }
+            detalles = txt_Detalles.getText();
+
+            Ventas ventas = new Ventas();
+            int r = ventas.insertar(idarticulo, idservicio, formapago, detalles);
+            if (r != 0)
+            {
+                JOptionPane.showMessageDialog(null, "La venta fue registrada correctamente");
+            } else
+            {
+                JOptionPane.showMessageDialog(null, "Ocurrio un error");
+            }
+        }
     }//GEN-LAST:event_btn_InsertarActionPerformed
+
+    private void combo_ArticuloActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_ArticuloActionPerformed
+    {//GEN-HEADEREND:event_combo_ArticuloActionPerformed
+        // TODO add your handling code here:
+        if (activarComboArticulo)
+        {
+            double total = 0;
+            double articulo = 0;
+            double servicio = 0;
+
+            Inventario obj_inventario = (Inventario) combo_Articulo.getSelectedItem();
+            TipoDeServicio obj_servicio = (TipoDeServicio) combo_Servicio.getSelectedItem();
+
+            articulo = obj_inventario.getPrecio();
+            servicio = obj_servicio.getPrecio();
+            total = articulo + servicio;
+
+            txt_Total.setText(String.valueOf(total));
+        }
+        activarComboArticulo = true;
+    }//GEN-LAST:event_combo_ArticuloActionPerformed
+
+    private void combo_ServicioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_ServicioActionPerformed
+    {//GEN-HEADEREND:event_combo_ServicioActionPerformed
+        // TODO add your handling code here:
+        double total = 0;
+        double articulo = 0;
+        double servicio = 0;
+
+        Inventario obj_inventario = (Inventario) combo_Articulo.getSelectedItem();
+        TipoDeServicio obj_servicio = (TipoDeServicio) combo_Servicio.getSelectedItem();
+
+        articulo = obj_inventario.getPrecio();
+        servicio = obj_servicio.getPrecio();
+        total = articulo + servicio;
+
+        txt_Total.setText(String.valueOf(total));
+    }//GEN-LAST:event_combo_ServicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,8 +328,6 @@ public class FormVentas extends javax.swing.JFrame
     private javax.swing.JComboBox<Inventario> combo_Articulo;
     private javax.swing.JComboBox<String> combo_FormaPago;
     private javax.swing.JComboBox<TipoDeServicio> combo_Servicio;
-    private javax.swing.JComboBox combo_Venta;
-    private javax.swing.JLabel jLabel0;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
