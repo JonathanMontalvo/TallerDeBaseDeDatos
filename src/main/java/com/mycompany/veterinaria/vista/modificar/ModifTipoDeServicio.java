@@ -30,7 +30,7 @@ public class ModifTipoDeServicio extends javax.swing.JFrame
         llenarCombo_IdEmpleado();
         combo_Servicio.setSelectedIndex(0);
     }
-    
+
     public void llenarCombo_IdServicio()
     {
         combo_Servicio.removeAllItems();
@@ -43,7 +43,7 @@ public class ModifTipoDeServicio extends javax.swing.JFrame
             combo_Servicio.addItem(servico);
         }
     }
-    
+
     public void llenarCombo_IdEmpleado()
     {
         combo_Empleado.removeAllItems();
@@ -53,7 +53,10 @@ public class ModifTipoDeServicio extends javax.swing.JFrame
         while (iter.hasNext())
         {
             Empleados empleados = (Empleados) iter.next();
-            combo_Empleado.addItem(empleados);
+            if ("veterinario".equals(empleados.getAreatrabajo().toLowerCase()) || "veterinaria".equals(empleados.getAreatrabajo().toLowerCase()))
+            {
+                combo_Empleado.addItem(empleados);
+            }
         }
     }
 
@@ -126,7 +129,7 @@ public class ModifTipoDeServicio extends javax.swing.JFrame
         txt_Nombre.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         combo_Tipo.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        combo_Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "T", "R" }));
+        combo_Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tratamiento", "Revisión" }));
 
         txt_Precio.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
@@ -223,12 +226,12 @@ public class ModifTipoDeServicio extends javax.swing.JFrame
         String tipo = "";
         double precio = 0.0;
         TipoDeServicio servicio = (TipoDeServicio) combo_Servicio.getSelectedItem();
-        
+
         idempleado = servicio.getIdempleado();
         nombre = servicio.getNombre();
         tipo = servicio.getTipo();
         precio = servicio.getPrecio();
-        
+
         for (int i = 0; i < combo_Empleado.getItemCount(); i++)
         {
             combo_Empleado.setSelectedIndex(i);
@@ -239,7 +242,14 @@ public class ModifTipoDeServicio extends javax.swing.JFrame
             }
         }
         txt_Nombre.setText(nombre);
-        combo_Tipo.setSelectedItem(tipo);
+        if ("T".equals(tipo))
+        {
+            combo_Tipo.setSelectedIndex(0);
+        } else
+        {
+            combo_Tipo.setSelectedIndex(1);
+        }
+
         txt_Precio.setText(String.valueOf(precio));
     }//GEN-LAST:event_combo_ServicioActionPerformed
 
@@ -251,10 +261,10 @@ public class ModifTipoDeServicio extends javax.swing.JFrame
         String nombre = "";
         String tipo = "";
         double precio = 0.0;
-        
+
         TipoDeServicio servicio = (TipoDeServicio) combo_Servicio.getSelectedItem();
         Empleados empleado = (Empleados) combo_Empleado.getSelectedItem();
-        
+
         if (txt_Nombre.getText().equals("") || txt_Precio.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -265,9 +275,10 @@ public class ModifTipoDeServicio extends javax.swing.JFrame
                 idempleado = empleado.getIdempleado();
                 nombre = txt_Nombre.getText();
                 tipo = (String) combo_Tipo.getSelectedItem();
+                tipo = tipo.substring(0, 1);
                 precio = Double.parseDouble(txt_Precio.getText());
                 idservicio = servicio.getIdservicio();
-                
+
                 TipoDeServicio obj_servicio = new TipoDeServicio();
                 int r = obj_servicio.actualizar(idempleado, nombre, tipo, precio, idservicio);
                 if (r != 0)

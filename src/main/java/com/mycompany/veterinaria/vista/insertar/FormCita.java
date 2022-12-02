@@ -33,6 +33,7 @@ public class FormCita extends javax.swing.JFrame
         llenarCombo_TipoServicio();
         llenarCombo_Mascota();
         llenarCombo_Consultas();
+        combo_Mascota.setSelectedIndex(0);
     }
 
     /**
