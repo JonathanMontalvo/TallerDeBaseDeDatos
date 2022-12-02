@@ -78,7 +78,7 @@ public class FormMascota extends javax.swing.JFrame
         setTitle("Insertar Mascota");
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel5.setText("Cambie el nombre: ");
+        jLabel5.setText("Ingrese el nombre: ");
 
         txt_Nombre.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
@@ -98,13 +98,13 @@ public class FormMascota extends javax.swing.JFrame
         txt_TutorNombre.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel7.setText("Cambie el tipo: ");
+        jLabel7.setText("Ingrese el tipo de animal: ");
         jLabel7.setToolTipText("");
 
         txt_Tipo.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel8.setText("Cambie la raza:");
+        jLabel8.setText("Ingrese la raza:");
 
         txt_Raza.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
@@ -115,12 +115,12 @@ public class FormMascota extends javax.swing.JFrame
         combo_Sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel10.setText("Cambie el peso: ");
+        jLabel10.setText("Ingrese el peso: ");
 
         txt_Peso.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel11.setText("Cambie la medida: ");
+        jLabel11.setText("Ingrese la medida: ");
 
         txt_Medida.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
@@ -131,7 +131,7 @@ public class FormMascota extends javax.swing.JFrame
         elegirFecha.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel4.setText("Cambie los detalles: ");
+        jLabel4.setText("Escribe los detalles: ");
 
         txt_Detalles.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
@@ -185,21 +185,21 @@ public class FormMascota extends javax.swing.JFrame
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(combo_Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt_Raza, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txt_Peso, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt_Medida, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txt_Medida, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txt_Tipo)
+                                    .addComponent(txt_Raza, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE))))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -298,7 +298,7 @@ public class FormMascota extends javax.swing.JFrame
                 int r = obj_mascota.insertar(idtutor, tipo, raza, sexo, peso, medida, fechanacimiento, detalles, nombre);
                 if (r != 0)
                 {
-                    JOptionPane.showMessageDialog(null, "La venta fue registrada correctamente");
+                    JOptionPane.showMessageDialog(null, "La mascota fue registrada correctamente");
                 } else
                 {
                     JOptionPane.showMessageDialog(null, "Ocurrio un error");

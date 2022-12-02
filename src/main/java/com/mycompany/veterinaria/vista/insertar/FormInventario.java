@@ -6,6 +6,10 @@ package com.mycompany.veterinaria.vista.insertar;
 
 import com.mycompany.veterinaria.modelo.Inventario;
 import com.mycompany.veterinaria.modelo.Proveedores;
+import com.mycompany.veterinaria.vista.Principal;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +23,22 @@ public class FormInventario extends javax.swing.JFrame
      */
     public FormInventario()
     {
+        Principal.cadenaProveedor = 1;
         initComponents();
+        llenarCombo_IdProveedor();
+    }
+
+    public void llenarCombo_IdProveedor()
+    {
+        combo_Proveedor.removeAllItems();
+        Proveedores obj_proveedores = new Proveedores();
+        ArrayList listaproveedores = obj_proveedores.combo_Proveedores();
+        Iterator iter = listaproveedores.iterator();
+        while (iter.hasNext())
+        {
+            Proveedores proveedores = (Proveedores) iter.next();
+            combo_Proveedor.addItem(proveedores);
+        }
     }
 
     /**
@@ -32,8 +51,6 @@ public class FormInventario extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jLabel0 = new javax.swing.JLabel();
-        combo_Inventario = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         combo_Proveedor = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
@@ -49,40 +66,28 @@ public class FormInventario extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insertar Inventario");
 
-        jLabel0.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel0.setText("Seleccione el Inventario: ");
-
-        combo_Inventario.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        combo_Inventario.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                combo_InventarioActionPerformed(evt);
-            }
-        });
-
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel9.setText("Seleccione al proveedor: ");
 
         combo_Proveedor.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel10.setText("Cambie el tipo: ");
+        jLabel10.setText("Ingrese el tipo de producto:");
 
         txt_Tipo.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel11.setText("Cambie el nombre: ");
+        jLabel11.setText("Ingrese el nombre: ");
 
         txt_Nombre.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel3.setText("Cambie la cantidad: ");
+        jLabel3.setText("Ingrese la cantidad: ");
 
         txt_Cantidad.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel4.setText("Cambie el precio: ");
+        jLabel4.setText("Ingrese el precio: ");
 
         txt_Precio.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
@@ -110,8 +115,8 @@ public class FormInventario extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txt_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -126,23 +131,15 @@ public class FormInventario extends javax.swing.JFrame
                                     .addComponent(txt_Cantidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_Precio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE))
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(combo_Proveedor, 0, 360, Short.MAX_VALUE)
-                                    .addComponent(combo_Inventario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(combo_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel0, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo_Inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(combo_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -171,14 +168,43 @@ public class FormInventario extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void combo_InventarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_InventarioActionPerformed
-    {//GEN-HEADEREND:event_combo_InventarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo_InventarioActionPerformed
-
     private void btn_InsertarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_InsertarActionPerformed
     {//GEN-HEADEREND:event_btn_InsertarActionPerformed
         // TODO add your handling code here:
+        int idproveedor = 0;
+        String tipo = "";
+        String nombre = "";
+        int cantidad = 0;
+        double precio = 0.0;
+        Proveedores proveedores = (Proveedores) combo_Proveedor.getSelectedItem();
+
+        if (txt_Tipo.getText().equals("") || txt_Nombre.getText().equals("") || txt_Cantidad.getText().equals("") || txt_Precio.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else
+        {
+            try
+            {
+                idproveedor = proveedores.getIdproveedor();
+                tipo = txt_Tipo.getText();
+                nombre = txt_Nombre.getText();
+                cantidad = Integer.parseInt(txt_Cantidad.getText());
+                precio = Double.parseDouble(txt_Precio.getText());
+
+                Inventario obj_inventario = new Inventario();
+                int r = obj_inventario.insertar(idproveedor, tipo, nombre, cantidad, precio);
+                if (r != 0)
+                {
+                    JOptionPane.showMessageDialog(null, "El inventario fue registrado correctamente");
+                } else
+                {
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error");
+                }
+            } catch (NumberFormatException nFE)
+            {
+                JOptionPane.showMessageDialog(this, "Favor de solo capturar números reales y no cadenas de texto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btn_InsertarActionPerformed
 
     /**
@@ -228,9 +254,7 @@ public class FormInventario extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Insertar;
-    private javax.swing.JComboBox<Inventario> combo_Inventario;
     private javax.swing.JComboBox<Proveedores> combo_Proveedor;
-    private javax.swing.JLabel jLabel0;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
