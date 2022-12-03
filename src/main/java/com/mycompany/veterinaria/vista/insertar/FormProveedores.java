@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author mauri
+ * @author Hernánez Vázquez Bryan, Montalvo Pérez Jonathan, Peña Reynoso Jesús
  */
 public class FormProveedores extends javax.swing.JFrame
 {
@@ -44,13 +44,13 @@ public class FormProveedores extends javax.swing.JFrame
         setTitle("Insertar Proveedor");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel3.setText("Cambie el nombre: ");
+        jLabel3.setText("Ingrese el nombre: ");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel4.setText("Cambie el teléfono: ");
+        jLabel4.setText("Ingrese el teléfono: ");
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel5.setText("Cambie el correo: ");
+        jLabel5.setText("Ingrese el correo: ");
 
         txt_Nombre.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 

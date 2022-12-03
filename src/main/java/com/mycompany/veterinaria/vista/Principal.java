@@ -65,6 +65,13 @@ public class Principal extends javax.swing.JFrame
         btn_CerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btn_CerrarSesion.setText("Cerrar Sesión");
         btn_CerrarSesion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_CerrarSesion.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btn_CerrarSesionActionPerformed(evt);
+            }
+        });
 
         btn_InsertarIcono.setBackground(new java.awt.Color(255, 153, 51));
         btn_InsertarIcono.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
@@ -208,6 +215,12 @@ public class Principal extends javax.swing.JFrame
         Entidad e = new Entidad();
         e.setVisible(true);
     }//GEN-LAST:event_btn_EliminarIconoActionPerformed
+
+    private void btn_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_CerrarSesionActionPerformed
+    {//GEN-HEADEREND:event_btn_CerrarSesionActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btn_CerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments

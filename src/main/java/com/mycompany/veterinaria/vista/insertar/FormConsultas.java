@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author mauri
+ * @author Hernánez Vázquez Bryan, Montalvo Pérez Jonathan, Peña Reynoso Jesús
  */
 public class FormConsultas extends javax.swing.JFrame
 {
@@ -43,7 +43,7 @@ public class FormConsultas extends javax.swing.JFrame
         setTitle("Insertar Consulta");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel2.setText("Cambie los detalles: ");
+        jLabel2.setText("Escribe los detalles: ");
 
         txt_Detalles.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
@@ -94,14 +94,14 @@ public class FormConsultas extends javax.swing.JFrame
     {//GEN-HEADEREND:event_btn_InsertarActionPerformed
         // TODO add your handling code here:
         String detalles = "";
-        
+
         if (txt_Detalles.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
         } else
         {
             detalles = txt_Detalles.getText();
-            
+
             Consultas obj_consulta = new Consultas();
             int r = obj_consulta.insertar(detalles);
             if (r != 0)

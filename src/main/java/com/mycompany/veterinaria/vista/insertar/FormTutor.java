@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author mauri
+ * @author Hernánez Vázquez Bryan, Montalvo Pérez Jonathan, Peña Reynoso Jesús
  */
 public class FormTutor extends javax.swing.JFrame
 {
@@ -141,7 +141,7 @@ public class FormTutor extends javax.swing.JFrame
         String telefono = "";
         String correo = "";
         String direccion = "";
-        
+
         if (txt_Nombre.getText().equals("") || txt_Telefono.getText().equals("") || txt_Correo.getText().equals("") || txt_Direccion.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -154,7 +154,7 @@ public class FormTutor extends javax.swing.JFrame
                 Double.parseDouble(txt_Telefono.getText());
                 correo = txt_Correo.getText();
                 direccion = txt_Direccion.getText();
-                
+
                 Tutor obj_tutor = new Tutor();
                 int r = obj_tutor.insertar(nombre, telefono, correo, direccion);
                 if (r != 0)

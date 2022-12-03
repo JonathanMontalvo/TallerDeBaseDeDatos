@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author mauri
+ * @author Hernánez Vázquez Bryan, Montalvo Pérez Jonathan, Peña Reynoso Jesús
  */
 public class FormTipoDeServicio extends javax.swing.JFrame
 {
@@ -28,7 +28,7 @@ public class FormTipoDeServicio extends javax.swing.JFrame
         llenarCombo_IdEmpleado();
         combo_Empleado.setSelectedIndex(0);
     }
-    
+
     public void llenarCombo_IdEmpleado()
     {
         combo_Empleado.removeAllItems();
@@ -189,7 +189,7 @@ public class FormTipoDeServicio extends javax.swing.JFrame
                 tipo = (String) combo_Tipo.getSelectedItem();
                 tipo = tipo.substring(0, 1);
                 precio = Double.parseDouble(txt_Precio.getText());
-                
+
                 TipoDeServicio obj_servicio = new TipoDeServicio();
                 int r = obj_servicio.insertar(idempleado, nombre, tipo, precio);
                 if (r != 0)
@@ -211,7 +211,7 @@ public class FormTipoDeServicio extends javax.swing.JFrame
         // TODO add your handling code here:
         String nombre = "";
         Empleados empleados = (Empleados) combo_Empleado.getSelectedItem();
-        
+
         nombre = empleados.getNombre() + " " + empleados.getApellidopa() + " " + empleados.getApellidoma();
         txt_EmpleadoNombre.setText(nombre);
     }//GEN-LAST:event_combo_EmpleadoActionPerformed
