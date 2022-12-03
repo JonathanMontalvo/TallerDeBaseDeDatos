@@ -202,20 +202,27 @@ public class ModifTutor extends javax.swing.JFrame
             JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
         } else
         {
-            nombre = txt_Nombre.getText();
-            telefono = txt_Telefono.getText();
-            correo = txt_Correo.getText();
-            direccion = txt_Direccion.getText();
-            idtutor = tutor.getIdtutor();
+            try
+            {
+                nombre = txt_Nombre.getText();
+                telefono = txt_Telefono.getText();
+                Double.parseDouble(txt_Telefono.getText());
+                correo = txt_Correo.getText();
+                direccion = txt_Direccion.getText();
+                idtutor = tutor.getIdtutor();
 
-            Tutor obj_tutor = new Tutor();
-            int r = obj_tutor.actualizar(nombre, telefono, correo, direccion, idtutor);
-            if (r != 0)
+                Tutor obj_tutor = new Tutor();
+                int r = obj_tutor.actualizar(nombre, telefono, correo, direccion, idtutor);
+                if (r != 0)
+                {
+                    JOptionPane.showMessageDialog(this, "El tutor fue actualizado correctamente");
+                } else
+                {
+                    JOptionPane.showMessageDialog(this, "Ocurrio un error");
+                }
+            } catch (NumberFormatException nFE)
             {
-                JOptionPane.showMessageDialog(this, "El tutor fue actualizado correctamente");
-            } else
-            {
-                JOptionPane.showMessageDialog(this, "Ocurrio un error");
+                JOptionPane.showMessageDialog(this, "Favor de solo capturar números reales y no cadenas de texto", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         }
     }//GEN-LAST:event_btn_ModificarActionPerformed
