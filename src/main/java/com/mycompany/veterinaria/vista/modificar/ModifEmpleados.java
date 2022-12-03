@@ -289,6 +289,7 @@ public class ModifEmpleados extends javax.swing.JFrame
                     Date date = elegirFecha.getDate();
                     long d = date.getTime();
                     java.sql.Date f = new java.sql.Date(d);
+
                     nombre = txt_Nombre.getText();
                     apellidopa = txt_ApPat.getText();
                     apellidoma = txt_ApMat.getText();

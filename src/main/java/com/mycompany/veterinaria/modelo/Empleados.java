@@ -187,7 +187,7 @@ public class Empleados
         return getNombre() + " " + getApellidopa() + " " + getApellidoma();
     }
 
-    public int insertar(int idempleado, String nombre, String apellidopa, String apellidoma, String areatrabajo, long telefono, String correo, String fechanacimiento)
+    public int insertar(String nombre, String apellidopa, String apellidoma, String areatrabajo, long telefono, String correo, String fechanacimiento)
     {
         int respuesta = 0;
         Connection conect = null;
@@ -195,17 +195,16 @@ public class Empleados
 
         try
         {
-            String sql = "insert into Empleados (idempleado, nombre, apellidopa, apellidoma, areatrabajo, telefono, correo, fechanacimiento) values (?,?,?,?,?,?,?,?)";
+            String sql = "insert into Empleados (idempleado, nombre, apellidopa, apellidoma, areatrabajo, telefono, correo, fechanacimiento) values (2077011,?,?,?,?,?,?,?)";
             conect = Conexion.Conectar();
             ps = conect.prepareStatement(sql);
-            ps.setInt(1, idempleado);
-            ps.setString(2, nombre);
-            ps.setString(3, apellidopa);
-            ps.setString(4, apellidoma);
-            ps.setString(5, areatrabajo);
-            ps.setLong(6, telefono);
-            ps.setString(7, correo);
-            ps.setString(8, fechanacimiento);
+            ps.setString(1, nombre);
+            ps.setString(2, apellidopa);
+            ps.setString(3, apellidoma);
+            ps.setString(4, areatrabajo);
+            ps.setLong(5, telefono);
+            ps.setString(6, correo);
+            ps.setString(7, fechanacimiento);
             respuesta = ps.executeUpdate();
         } catch (SQLException ex)
         {

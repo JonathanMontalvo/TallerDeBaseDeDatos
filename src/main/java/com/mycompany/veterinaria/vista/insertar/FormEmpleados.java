@@ -6,6 +6,9 @@ package com.mycompany.veterinaria.vista.insertar;
 
 import com.mycompany.veterinaria.modelo.Empleados;
 
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mauri
@@ -31,8 +34,6 @@ public class FormEmpleados extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jLabel0 = new javax.swing.JLabel();
-        combo_Empleado = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         txt_Nombre = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -52,46 +53,34 @@ public class FormEmpleados extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insertar Empleado");
 
-        jLabel0.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel0.setText("Seleccione el Empleado: ");
-
-        combo_Empleado.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        combo_Empleado.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                combo_EmpleadoActionPerformed(evt);
-            }
-        });
-
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel5.setText("Cambie el nombre: ");
+        jLabel5.setText("Ingrese el nombre: ");
 
         txt_Nombre.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel6.setText("Cambie el apellido paterno: ");
+        jLabel6.setText("Ingrese el apellido paterno: ");
 
         txt_ApPat.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel7.setText("Cambie el apellido materno:  ");
+        jLabel7.setText("Ingrese el apellido materno:  ");
         jLabel7.setToolTipText("");
 
         txt_ApMat.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel8.setText("Cambie el área de trabajo: ");
+        jLabel8.setText("Ingrese el área de trabajo: ");
 
         txt_AreaTra.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel9.setText("Cambie el teléfono: ");
+        jLabel9.setText("Ingrese el teléfono: ");
 
         txt_Telefono.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel10.setText("Cambie el correo: ");
+        jLabel10.setText("Ingrese el correo: ");
 
         txt_Correo.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
@@ -145,24 +134,18 @@ public class FormEmpleados extends javax.swing.JFrame
                                 .addComponent(elegirFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txt_Nombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                                    .addComponent(txt_ApPat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                                    .addComponent(combo_Empleado, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(txt_ApPat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel0, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo_Empleado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -199,14 +182,58 @@ public class FormEmpleados extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void combo_EmpleadoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_EmpleadoActionPerformed
-    {//GEN-HEADEREND:event_combo_EmpleadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo_EmpleadoActionPerformed
-
     private void btn_InsertarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_InsertarActionPerformed
     {//GEN-HEADEREND:event_btn_InsertarActionPerformed
         // TODO add your handling code here:
+        String nombre = "";
+        String apellidopa = "";
+        String apellidoma = "";
+        String areatrabajo = "";
+        long telefono = 0;
+        String correo = "";
+        String fechanacimiento = "";
+
+        if (elegirFecha.getDate() == null)
+        {
+            JOptionPane.showMessageDialog(this, "Favor de ingresar una fecha valida", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else
+        {
+            if (txt_Nombre.getText().equals("") || txt_ApPat.getText().equals("") || txt_ApMat.getText().equals("") || txt_AreaTra.getText().equals("") || txt_Telefono.getText().equals("") || txt_Correo.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } else
+            {
+                try
+                {
+                    Date date = elegirFecha.getDate();
+                    long d = date.getTime();
+                    java.sql.Date f = new java.sql.Date(d);
+
+                    nombre = txt_Nombre.getText();
+                    apellidopa = txt_ApPat.getText();
+                    apellidoma = txt_ApMat.getText();
+                    areatrabajo = txt_AreaTra.getText();
+                    telefono = Long.parseLong(txt_Telefono.getText());
+                    correo = txt_Correo.getText();
+                    fechanacimiento = f.toString().substring(8, 10)
+                            + "/" + f.toString().substring(5, 7)
+                            + "/" + f.toString().substring(2, 4);
+
+                    Empleados obj_empleado = new Empleados();
+                    int r = obj_empleado.insertar(nombre, apellidopa, apellidoma, areatrabajo, telefono, correo, fechanacimiento);
+                    if (r != 0)
+                    {
+                        JOptionPane.showMessageDialog(this, "El empleado fue registrado correctamente");
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(this, "Ocurrio un error");
+                    }
+                } catch (NumberFormatException nFE)
+                {
+                    JOptionPane.showMessageDialog(this, "Favor de solo capturar números reales y no cadenas de texto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        }
     }//GEN-LAST:event_btn_InsertarActionPerformed
 
     /**
@@ -256,9 +283,7 @@ public class FormEmpleados extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Insertar;
-    private javax.swing.JComboBox<Empleados> combo_Empleado;
     private com.toedter.calendar.JDateChooser elegirFecha;
-    private javax.swing.JLabel jLabel0;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
