@@ -6,8 +6,14 @@ package com.mycompany.veterinaria.vista.modificar;
 
 import com.mycompany.veterinaria.modelo.Empleados;
 import com.mycompany.veterinaria.vista.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -217,28 +223,98 @@ public class ModifEmpleados extends javax.swing.JFrame
     private void combo_EmpleadoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_EmpleadoActionPerformed
     {//GEN-HEADEREND:event_combo_EmpleadoActionPerformed
         // TODO add your handling code here:
-        int idtutor = 0;
         String nombre = "";
         String apellidopa = "";
         String apellidoma = "";
         String areatrabajo = "";
         long telefono = 0;
         String correo = "";
-        String fechnacimiento = "";
+        String fechanacimiento = "";
         Empleados empleados = (Empleados) combo_Empleado.getSelectedItem();
-        
+
+        nombre = empleados.getNombre();
+        apellidopa = empleados.getApellidopa();
+        apellidoma = empleados.getApellidoma();
+        areatrabajo = empleados.getAreatrabajo();
+        telefono = empleados.getTelefono();
+        correo = empleados.getCorreo();
+        fechanacimiento = empleados.getFechanacimiento();
+
         txt_Nombre.setText(nombre);
         txt_ApPat.setText(apellidopa);
         txt_ApMat.setText(apellidoma);
         txt_AreaTra.setText(areatrabajo);
         txt_Telefono.setText(String.valueOf(telefono));
         txt_Correo.setText(correo);
-        
+        fechanacimiento = empleados.getFechanacimiento();
+        fechanacimiento = fechanacimiento.toString().substring(8, 10)
+                + "/" + fechanacimiento.toString().substring(5, 7)
+                + "/" + fechanacimiento.toString().substring(2, 4);
+        try
+        {
+            SimpleDateFormat fechaParseada = new SimpleDateFormat("dd/MM/yy");
+            Date fechaFormateada = fechaParseada.parse(fechanacimiento);
+            elegirFecha.setDate(fechaFormateada);
+        } catch (ParseException ex)
+        {
+            Logger.getLogger(ModifEmpleados.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_combo_EmpleadoActionPerformed
 
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_ModificarActionPerformed
     {//GEN-HEADEREND:event_btn_ModificarActionPerformed
         // TODO add your handling code here:
+        String nombre = "";
+        String apellidopa = "";
+        String apellidoma = "";
+        String areatrabajo = "";
+        long telefono = 0;
+        String correo = "";
+        String fechanacimiento = "";
+        int idempleado = 0;
+        Empleados empleados = (Empleados) combo_Empleado.getSelectedItem();
+
+        if (elegirFecha.getDate() == null)
+        {
+            JOptionPane.showMessageDialog(this, "Favor de ingresar una fecha valida", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else
+        {
+            if (txt_Nombre.getText().equals("") || txt_ApPat.getText().equals("") || txt_ApMat.getText().equals("") || txt_AreaTra.getText().equals("") || txt_Telefono.getText().equals("") || txt_Correo.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            } else
+            {
+                try
+                {
+                    Date date = elegirFecha.getDate();
+                    long d = date.getTime();
+                    java.sql.Date f = new java.sql.Date(d);
+                    nombre = txt_Nombre.getText();
+                    apellidopa = txt_ApPat.getText();
+                    apellidoma = txt_ApMat.getText();
+                    areatrabajo = txt_AreaTra.getText();
+                    telefono = Long.parseLong(txt_Telefono.getText());
+                    correo = txt_Correo.getText();
+                    fechanacimiento = f.toString().substring(8, 10)
+                            + "/" + f.toString().substring(5, 7)
+                            + "/" + f.toString().substring(2, 4);
+                    idempleado = empleados.getIdempleado();
+
+                    Empleados obj_empleado = new Empleados();
+                    int r = obj_empleado.actualizar(nombre, apellidopa, apellidoma, areatrabajo, telefono, correo, fechanacimiento, idempleado);
+                    if (r != 0)
+                    {
+                        JOptionPane.showMessageDialog(this, "El empleado fue actualizado correctamente");
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(this, "Ocurrio un error");
+                    }
+                } catch (NumberFormatException nFE)
+                {
+                    JOptionPane.showMessageDialog(this, "Favor de solo capturar números reales y no cadenas de texto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        }
     }//GEN-LAST:event_btn_ModificarActionPerformed
 
     /**
