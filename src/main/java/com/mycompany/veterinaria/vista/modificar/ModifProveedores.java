@@ -6,6 +6,9 @@ package com.mycompany.veterinaria.vista.modificar;
 
 import com.mycompany.veterinaria.modelo.Proveedores;
 import com.mycompany.veterinaria.vista.Principal;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +24,7 @@ public class ModifProveedores extends javax.swing.JFrame
     {
         Principal.cadenaProveedor = 0;
         initComponents();
+        llenarCombo_IdProveedor();
     }
 
     /**
@@ -153,11 +157,55 @@ public class ModifProveedores extends javax.swing.JFrame
     private void combo_ProveedorActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_ProveedorActionPerformed
     {//GEN-HEADEREND:event_combo_ProveedorActionPerformed
         // TODO add your handling code here:
+        String nombre = "";
+        long telefono = 0;
+        String correo = "";
+        Proveedores proveedores = (Proveedores) combo_Proveedor.getSelectedItem();
+
+        nombre = proveedores.getNombre();
+        telefono = proveedores.getTelefono();
+        correo = proveedores.getCorreo();
+
+        txt_Nombre.setText(nombre);
+        txt_Telefono.setText(String.valueOf(telefono));
+        txt_Correo.setText(correo);
     }//GEN-LAST:event_combo_ProveedorActionPerformed
 
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_ModificarActionPerformed
     {//GEN-HEADEREND:event_btn_ModificarActionPerformed
         // TODO add your handling code here:
+        String nombre = "";
+        long telefono = 0;
+        String correo = "";
+        Proveedores proveedores = (Proveedores) combo_Proveedor.getSelectedItem();
+        int idproveedor = 0;
+
+        if (txt_Nombre.getText().equals("") || txt_Telefono.getText().equals("") || txt_Correo.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else
+        {
+            try
+            {
+                nombre = txt_Nombre.getText();;
+                telefono = Long.parseLong(txt_Telefono.getText());
+                correo = txt_Correo.getText();
+                idproveedor = proveedores.getIdproveedor();
+
+                Proveedores obj_proveedor = new Proveedores();
+                int r = obj_proveedor.actualizar(nombre, telefono, correo, idproveedor);
+                if (r != 0)
+                {
+                    JOptionPane.showMessageDialog(this, "El proveedor fue actualizado correctamente");
+                } else
+                {
+                    JOptionPane.showMessageDialog(this, "Ocurrio un error");
+                }
+            } catch (NumberFormatException nFE)
+            {
+                JOptionPane.showMessageDialog(this, "Favor de solo capturar números reales y no cadenas de texto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btn_ModificarActionPerformed
 
     /**
@@ -217,4 +265,16 @@ public class ModifProveedores extends javax.swing.JFrame
     private javax.swing.JTextField txt_Nombre;
     private javax.swing.JTextField txt_Telefono;
     // End of variables declaration//GEN-END:variables
+    public void llenarCombo_IdProveedor()
+    {
+        combo_Proveedor.removeAllItems();
+        Proveedores obj_proveedores = new Proveedores();
+        ArrayList listaproveedores = obj_proveedores.combo_Proveedores();
+        Iterator iter = listaproveedores.iterator();
+        while (iter.hasNext())
+        {
+            Proveedores proveedores = (Proveedores) iter.next();
+            combo_Proveedor.addItem(proveedores);
+        }
+    }
 }

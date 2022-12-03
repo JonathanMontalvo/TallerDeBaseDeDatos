@@ -5,6 +5,7 @@
 package com.mycompany.veterinaria.vista.insertar;
 
 import com.mycompany.veterinaria.modelo.Proveedores;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,11 +32,9 @@ public class FormProveedores extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jLabel0 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        combo_Proveedor = new javax.swing.JComboBox<>();
         txt_Nombre = new javax.swing.JTextField();
         txt_Telefono = new javax.swing.JTextField();
         txt_Correo = new javax.swing.JTextField();
@@ -43,9 +42,6 @@ public class FormProveedores extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insertar Proveedor");
-
-        jLabel0.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel0.setText("Seleccione el Proveedor: ");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel3.setText("Cambie el nombre: ");
@@ -55,15 +51,6 @@ public class FormProveedores extends javax.swing.JFrame
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel5.setText("Cambie el correo: ");
-
-        combo_Proveedor.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        combo_Proveedor.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                combo_ProveedorActionPerformed(evt);
-            }
-        });
 
         txt_Nombre.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
 
@@ -105,21 +92,13 @@ public class FormProveedores extends javax.swing.JFrame
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel0, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(combo_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txt_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel0, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -140,14 +119,38 @@ public class FormProveedores extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void combo_ProveedorActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_ProveedorActionPerformed
-    {//GEN-HEADEREND:event_combo_ProveedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo_ProveedorActionPerformed
-
     private void btn_InsertarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_InsertarActionPerformed
     {//GEN-HEADEREND:event_btn_InsertarActionPerformed
         // TODO add your handling code here:
+        String nombre = "";
+        long telefono = 0;
+        String correo = "";
+        
+        if (txt_Nombre.getText().equals("") || txt_Telefono.getText().equals("") || txt_Correo.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else
+        {
+            try
+            {
+                nombre = txt_Nombre.getText();;
+                telefono = Long.parseLong(txt_Telefono.getText());
+                correo = txt_Correo.getText();
+                
+                Proveedores obj_proveedor = new Proveedores();
+                int r = obj_proveedor.insertar(nombre, telefono, correo);
+                if (r != 0)
+                {
+                    JOptionPane.showMessageDialog(this, "El proveedor fue actualizado correctamente");
+                } else
+                {
+                    JOptionPane.showMessageDialog(this, "Ocurrio un error");
+                }
+            } catch (NumberFormatException nFE)
+            {
+                JOptionPane.showMessageDialog(this, "Favor de solo capturar números reales y no cadenas de texto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btn_InsertarActionPerformed
 
     /**
@@ -197,8 +200,6 @@ public class FormProveedores extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Insertar;
-    private javax.swing.JComboBox<Proveedores> combo_Proveedor;
-    private javax.swing.JLabel jLabel0;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
