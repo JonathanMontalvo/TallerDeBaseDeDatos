@@ -5,6 +5,10 @@
 package com.mycompany.veterinaria.vista.insertar;
 
 import com.mycompany.veterinaria.modelo.Consultas;
+import com.mycompany.veterinaria.vista.Principal;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,26 +35,12 @@ public class FormConsultas extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jLabel1 = new javax.swing.JLabel();
-        combo_Consulta = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         txt_Detalles = new javax.swing.JTextField();
         btn_Insertar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insertar Consulta");
-
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setText("Seleccione la Consulta: ");
-
-        combo_Consulta.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        combo_Consulta.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                combo_ConsultaActionPerformed(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setText("Cambie los detalles: ");
@@ -79,26 +69,15 @@ public class FormConsultas extends javax.swing.JFrame
                         .addComponent(btn_Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(22, 22, 22)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_Detalles, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-                            .addComponent(combo_Consulta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addComponent(txt_Detalles, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo_Consulta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_Detalles, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -111,14 +90,28 @@ public class FormConsultas extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void combo_ConsultaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_ConsultaActionPerformed
-    {//GEN-HEADEREND:event_combo_ConsultaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combo_ConsultaActionPerformed
-
     private void btn_InsertarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_InsertarActionPerformed
     {//GEN-HEADEREND:event_btn_InsertarActionPerformed
         // TODO add your handling code here:
+        String detalles = "";
+        
+        if (txt_Detalles.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else
+        {
+            detalles = txt_Detalles.getText();
+            
+            Consultas obj_consulta = new Consultas();
+            int r = obj_consulta.insertar(detalles);
+            if (r != 0)
+            {
+                JOptionPane.showMessageDialog(this, "La consulta fue registrada correctamente");
+            } else
+            {
+                JOptionPane.showMessageDialog(this, "Ocurrio un error");
+            }
+        }
     }//GEN-LAST:event_btn_InsertarActionPerformed
 
     /**
@@ -168,8 +161,6 @@ public class FormConsultas extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Insertar;
-    private javax.swing.JComboBox<Consultas> combo_Consulta;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txt_Detalles;
     // End of variables declaration//GEN-END:variables

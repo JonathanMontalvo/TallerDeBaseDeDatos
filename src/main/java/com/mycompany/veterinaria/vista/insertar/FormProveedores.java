@@ -125,7 +125,7 @@ public class FormProveedores extends javax.swing.JFrame
         String nombre = "";
         long telefono = 0;
         String correo = "";
-        
+
         if (txt_Nombre.getText().equals("") || txt_Telefono.getText().equals("") || txt_Correo.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -136,12 +136,12 @@ public class FormProveedores extends javax.swing.JFrame
                 nombre = txt_Nombre.getText();;
                 telefono = Long.parseLong(txt_Telefono.getText());
                 correo = txt_Correo.getText();
-                
+
                 Proveedores obj_proveedor = new Proveedores();
                 int r = obj_proveedor.insertar(nombre, telefono, correo);
                 if (r != 0)
                 {
-                    JOptionPane.showMessageDialog(this, "El proveedor fue actualizado correctamente");
+                    JOptionPane.showMessageDialog(this, "El proveedor fue registrado correctamente");
                 } else
                 {
                     JOptionPane.showMessageDialog(this, "Ocurrio un error");

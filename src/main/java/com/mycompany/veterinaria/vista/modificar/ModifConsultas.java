@@ -6,6 +6,9 @@ package com.mycompany.veterinaria.vista.modificar;
 
 import com.mycompany.veterinaria.modelo.Consultas;
 import com.mycompany.veterinaria.vista.Principal;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +24,7 @@ public class ModifConsultas extends javax.swing.JFrame
     {
         Principal.cadenaConsulta = 0;
         initComponents();
+        llenarCombo_IdConsultas();
     }
 
     /**
@@ -123,11 +127,39 @@ public class ModifConsultas extends javax.swing.JFrame
     private void combo_ConsultaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_ConsultaActionPerformed
     {//GEN-HEADEREND:event_combo_ConsultaActionPerformed
         // TODO add your handling code here:
+        String detalles = "";
+        Consultas consultas = (Consultas) combo_Consulta.getSelectedItem();
+
+        detalles = consultas.getDetalles();
+
+        txt_Detalles.setText(detalles);
     }//GEN-LAST:event_combo_ConsultaActionPerformed
 
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_ModificarActionPerformed
     {//GEN-HEADEREND:event_btn_ModificarActionPerformed
         // TODO add your handling code here:
+        String detalles = "";
+        int idconsulta = 0;
+        Consultas consultas = (Consultas) combo_Consulta.getSelectedItem();
+
+        if (txt_Detalles.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else
+        {
+            detalles = txt_Detalles.getText();
+            idconsulta = consultas.getIdconsulta();
+
+            Consultas obj_consulta = new Consultas();
+            int r = obj_consulta.actualizar(detalles, idconsulta);
+            if (r != 0)
+            {
+                JOptionPane.showMessageDialog(this, "La consulta fue actualizada correctamente");
+            } else
+            {
+                JOptionPane.showMessageDialog(this, "Ocurrio un error");
+            }
+        }
     }//GEN-LAST:event_btn_ModificarActionPerformed
 
     /**
@@ -183,4 +215,16 @@ public class ModifConsultas extends javax.swing.JFrame
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txt_Detalles;
     // End of variables declaration//GEN-END:variables
+    public void llenarCombo_IdConsultas()
+    {
+        combo_Consulta.removeAllItems();
+        Consultas obj_consultas = new Consultas();
+        ArrayList listaconsultas = obj_consultas.combo_Consultas();
+        Iterator iter = listaconsultas.iterator();
+        while (iter.hasNext())
+        {
+            Consultas consultas = (Consultas) iter.next();
+            combo_Consulta.addItem(consultas);
+        }
+    }
 }

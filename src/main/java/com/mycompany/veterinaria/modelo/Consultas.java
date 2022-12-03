@@ -79,7 +79,7 @@ public class Consultas
         return getDetalles();
     }
 
-    public int insertar(int idconsulta, String detalles)
+    public int insertar(String detalles)
     {
         int respuesta = 0;
         Connection conect = null;
@@ -229,7 +229,7 @@ public class Consultas
 
         try
         {
-            String sql = "update Consultas set detalles = ? where id = ?";
+            String sql = "update Consultas set detalles = ? where idconsulta = ?";
             conect = Conexion.Conectar();
             ps = conect.prepareStatement(sql);
             ps.setString(1, detalles);
