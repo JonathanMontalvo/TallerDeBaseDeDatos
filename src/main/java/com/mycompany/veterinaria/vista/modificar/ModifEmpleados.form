@@ -196,9 +196,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Cambie el &#xe1;rea de trabajo: "/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Cambie el &#xe1;rea de trabajo: "/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>

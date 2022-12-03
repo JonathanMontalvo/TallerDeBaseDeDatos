@@ -6,6 +6,9 @@ package com.mycompany.veterinaria.vista.modificar;
 
 import com.mycompany.veterinaria.modelo.Tutor;
 import com.mycompany.veterinaria.vista.Principal;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +24,8 @@ public class ModifTutor extends javax.swing.JFrame
     {
         Principal.cadenaTutor = 0;
         initComponents();
+        llenarCombo_IdTutor();
+        combo_Tutor.setSelectedIndex(0);
     }
 
     /**
@@ -165,11 +170,54 @@ public class ModifTutor extends javax.swing.JFrame
     private void combo_TutorActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_TutorActionPerformed
     {//GEN-HEADEREND:event_combo_TutorActionPerformed
         // TODO add your handling code here:
+        String nombre = "";
+        String telefono = "";
+        String correo = "";
+        String direccion = "";
+        Tutor obj_tutor = (Tutor) combo_Tutor.getSelectedItem();
+
+        nombre = obj_tutor.getNombre();
+        telefono = obj_tutor.getTelefono();
+        correo = obj_tutor.getCorreo();
+        direccion = obj_tutor.getDireccion();
+
+        txt_Nombre.setText(nombre);
+        txt_Telefono.setText(telefono);
+        txt_Correo.setText(correo);
+        txt_Direccion.setText(direccion);
     }//GEN-LAST:event_combo_TutorActionPerformed
 
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_ModificarActionPerformed
     {//GEN-HEADEREND:event_btn_ModificarActionPerformed
         // TODO add your handling code here:
+        String nombre = "";
+        String telefono = "";
+        String correo = "";
+        String direccion = "";
+        int idtutor = 0;
+        Tutor tutor = (Tutor) combo_Tutor.getSelectedItem();
+
+        if (txt_Nombre.getText().equals("") || txt_Telefono.getText().equals("") || txt_Correo.getText().equals("") || txt_Direccion.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } else
+        {
+            nombre = txt_Nombre.getText();
+            telefono = txt_Telefono.getText();
+            correo = txt_Correo.getText();
+            direccion = txt_Direccion.getText();
+            idtutor = tutor.getIdtutor();
+
+            Tutor obj_tutor = new Tutor();
+            int r = obj_tutor.actualizar(nombre, telefono, correo, direccion, idtutor);
+            if (r != 0)
+            {
+                JOptionPane.showMessageDialog(this, "El tutor fue actualizado correctamente");
+            } else
+            {
+                JOptionPane.showMessageDialog(this, "Ocurrio un error");
+            }
+        }
     }//GEN-LAST:event_btn_ModificarActionPerformed
 
     /**
@@ -231,4 +279,16 @@ public class ModifTutor extends javax.swing.JFrame
     private javax.swing.JTextField txt_Nombre;
     private javax.swing.JTextField txt_Telefono;
     // End of variables declaration//GEN-END:variables
+    public void llenarCombo_IdTutor()
+    {
+        combo_Tutor.removeAllItems();
+        Tutor obj_tutor = new Tutor();
+        ArrayList listatutor = obj_tutor.combo_Tutor();
+        Iterator iter = listatutor.iterator();
+        while (iter.hasNext())
+        {
+            Tutor tutor = (Tutor) iter.next();
+            combo_Tutor.addItem(tutor);
+        }
+    }
 }

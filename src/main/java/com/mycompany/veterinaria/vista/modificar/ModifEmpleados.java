@@ -6,6 +6,8 @@ package com.mycompany.veterinaria.vista.modificar;
 
 import com.mycompany.veterinaria.modelo.Empleados;
 import com.mycompany.veterinaria.vista.Principal;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -21,6 +23,7 @@ public class ModifEmpleados extends javax.swing.JFrame
     {
         Principal.cadenaEmpleado = 0;
         initComponents();
+        llenarCombo_IdEmpleado();
     }
 
     /**
@@ -214,6 +217,23 @@ public class ModifEmpleados extends javax.swing.JFrame
     private void combo_EmpleadoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_combo_EmpleadoActionPerformed
     {//GEN-HEADEREND:event_combo_EmpleadoActionPerformed
         // TODO add your handling code here:
+        int idtutor = 0;
+        String nombre = "";
+        String apellidopa = "";
+        String apellidoma = "";
+        String areatrabajo = "";
+        long telefono = 0;
+        String correo = "";
+        String fechnacimiento = "";
+        Empleados empleados = (Empleados) combo_Empleado.getSelectedItem();
+        
+        txt_Nombre.setText(nombre);
+        txt_ApPat.setText(apellidopa);
+        txt_ApMat.setText(apellidoma);
+        txt_AreaTra.setText(areatrabajo);
+        txt_Telefono.setText(String.valueOf(telefono));
+        txt_Correo.setText(correo);
+        
     }//GEN-LAST:event_combo_EmpleadoActionPerformed
 
     private void btn_ModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_ModificarActionPerformed
@@ -286,4 +306,16 @@ public class ModifEmpleados extends javax.swing.JFrame
     private javax.swing.JTextField txt_Nombre;
     private javax.swing.JTextField txt_Telefono;
     // End of variables declaration//GEN-END:variables
+    public void llenarCombo_IdEmpleado()
+    {
+        combo_Empleado.removeAllItems();
+        Empleados obj_empleados = new Empleados();
+        ArrayList listaempleados = obj_empleados.combo_Empleados();
+        Iterator iter = listaempleados.iterator();
+        while (iter.hasNext())
+        {
+            Empleados empleados = (Empleados) iter.next();
+            combo_Empleado.addItem(empleados);
+        }
+    }
 }
