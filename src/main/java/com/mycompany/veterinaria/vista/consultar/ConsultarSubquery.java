@@ -21,6 +21,8 @@ public class ConsultarSubquery extends javax.swing.JFrame
     public ConsultarSubquery()
     {
         initComponents();
+        jScrollPane1.setVisible(false);
+        datos.setVisible(false);
         this.setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -95,12 +97,14 @@ public class ConsultarSubquery extends javax.swing.JFrame
         {
             case 0:
                 datos.setModel(obj_Subquery.subqueryMayorPromedioPrecio());
-                this.setTitle("Subquery de");
+                this.setTitle("Subquery de mayor al promedio de precio del Inventario");
                 break;
             default:
                 JOptionPane.showMessageDialog(this, "OCURRIO UN ERROR 130" + Subquerys.tipoSubquery, "Error", JOptionPane.ERROR_MESSAGE);
                 break;
         }
+        jScrollPane1.setVisible(true);
+        datos.setVisible(true);
     }//GEN-LAST:event_formWindowActivated
 
     /**

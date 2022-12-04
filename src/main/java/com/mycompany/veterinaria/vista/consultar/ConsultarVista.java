@@ -21,6 +21,8 @@ public class ConsultarVista extends javax.swing.JFrame
     public ConsultarVista()
     {
         initComponents();
+        jScrollPane1.setVisible(false);
+        datos.setVisible(false);
         this.setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -95,12 +97,14 @@ public class ConsultarVista extends javax.swing.JFrame
         {
             case 0:
                 datos.setModel(obj_Vista.consultarVistaPerros());
-                this.setTitle("Vista de Perros");
+                this.setTitle("Vista de perros");
                 break;
             default:
                 JOptionPane.showMessageDialog(this, "OCURRIO UN ERROR 140" + Vistas.tipoVista, "Error", JOptionPane.ERROR_MESSAGE);
                 break;
         }
+        jScrollPane1.setVisible(true);
+        datos.setVisible(true);
     }//GEN-LAST:event_formWindowActivated
 
     /**

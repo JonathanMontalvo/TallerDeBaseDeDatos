@@ -22,7 +22,7 @@ public class ConsultarJoins extends javax.swing.JFrame
     {
         initComponents();
         jScrollPane1.setVisible(false);
-        jScrollPane1.setVisible(false);
+        datos.setVisible(false);
         this.setExtendedState(MAXIMIZED_BOTH);
     }
 
