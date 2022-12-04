@@ -4,24 +4,24 @@
  */
 package com.mycompany.veterinaria.vista;
 
-import com.mycompany.veterinaria.vista.consultar.ConsultarJoins;
+import com.mycompany.veterinaria.vista.consultar.ConsultarSubquery;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Hernánez Vázquez Bryan, Montalvo Pérez Jonathan, Peña Reynoso Jesús
  */
-public class Joins extends javax.swing.JFrame
+public class Subquerys extends javax.swing.JFrame
 {
 
-    public static int tipoJoin;
+    public static int tipoSubquery;
 
     /**
-     * Creates new form Joins
+     * Creates new form ConsultarSubquery
      */
-    public Joins()
+    public Subquerys()
     {
-        tipoJoin = 0;
+        tipoSubquery = 0;
         initComponents();
     }
 
@@ -35,14 +35,14 @@ public class Joins extends javax.swing.JFrame
     private void initComponents()
     {
 
-        combo_Joins = new javax.swing.JComboBox<>();
+        combo_Subquerys = new javax.swing.JComboBox<>();
         btn_Aceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Joins");
+        setTitle("Subquery");
 
-        combo_Joins.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
-        combo_Joins.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tutor y Mascota", "Empleados y Servicios", "Cita y Consulta", "Ventas con nombres", "Cita con nombres" }));
+        combo_Subquerys.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
+        combo_Subquerys.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mayor al promedio de precio del Inventario", "2", "3" }));
 
         btn_Aceptar.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
         btn_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/aceptar.png"))); // NOI18N
@@ -66,10 +66,10 @@ public class Joins extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(combo_Joins, 0, 367, Short.MAX_VALUE)
+                .addComponent(combo_Subquerys, 0, 615, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(117, 117, 117)
+                .addGap(246, 246, 246)
                 .addComponent(btn_Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -77,7 +77,7 @@ public class Joins extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(combo_Joins, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(combo_Subquerys, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(btn_Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -90,28 +90,22 @@ public class Joins extends javax.swing.JFrame
     private void btn_AceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_AceptarActionPerformed
     {//GEN-HEADEREND:event_btn_AceptarActionPerformed
         // TODO add your handling code here:
-        tipoJoin = combo_Joins.getSelectedIndex();
-        ConsultarJoins cJ = new ConsultarJoins();
+        tipoSubquery = combo_Subquerys.getSelectedIndex();
+        ConsultarSubquery cS = new ConsultarSubquery();
 
-        switch (tipoJoin)
+        switch (tipoSubquery)
         {
             case 0:
-                cJ.setVisible(true);
+                cS.setVisible(true);
                 break;
             case 1:
-                cJ.setVisible(true);
+                cS.setVisible(true);
                 break;
             case 2:
-                cJ.setVisible(true);
-                break;
-            case 3:
-                cJ.setVisible(true);
-                break;
-            case 4:
-                cJ.setVisible(true);
+                cS.setVisible(true);
                 break;
             default:
-                JOptionPane.showMessageDialog(this, "OCURRIO UN ERROR 110" + tipoJoin, "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "OCURRIO UN ERROR 130" + tipoSubquery, "Error", JOptionPane.ERROR_MESSAGE);
                 break;
         }
         this.dispose();
@@ -139,17 +133,20 @@ public class Joins extends javax.swing.JFrame
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(Joins.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Subquerys.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(Joins.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Subquerys.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(Joins.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Subquerys.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(Joins.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Subquerys.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -157,13 +154,13 @@ public class Joins extends javax.swing.JFrame
         {
             public void run()
             {
-                new Joins().setVisible(true);
+                new Subquerys().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Aceptar;
-    private javax.swing.JComboBox<String> combo_Joins;
+    private javax.swing.JComboBox<String> combo_Subquerys;
     // End of variables declaration//GEN-END:variables
 }

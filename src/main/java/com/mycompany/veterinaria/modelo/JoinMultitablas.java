@@ -246,4 +246,150 @@ public class JoinMultitablas
         }
         return modelo;
     }
+
+    public DefaultTableModel multitablaVentasServicioInventarioProveedor()
+    {
+        String[] campos =
+        {
+            "IDVENTA", "ARTICULO", "NOMBRE PROVEEDOR", "SERVICIO", "FORMAPAGO", "TOTAL"
+        };
+        String[] registro = new String[6];
+        DefaultTableModel modelo = new DefaultTableModel(null, campos);
+        Connection conect = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try
+        {
+            String sql = "select "
+                    + "v.idventa, "
+                    + "i.nombre ARTICULO, "
+                    + "p.nombre as \"NOMBRE PROVEEDOR\", "
+                    + "t.nombre SERVICIO, "
+                    + "v.formapago, "
+                    + "v.total "
+                    + "from Proveedores p, Inventario i, Ventas v, Tiposervicio t "
+                    + "where p.idproveedor = i.idproveedor "
+                    + "and i.idarticulo = v.idarticulo "
+                    + "and v.idservicio = t.idservicio "
+                    + "order by v.idventa";
+            conect = Conexion.Conectar();
+            ps = conect.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next())
+            {
+                registro[0] = rs.getString("IDVENTA");
+                registro[1] = rs.getString("ARTICULO");
+                registro[2] = rs.getString("NOMBRE PROVEEDOR");
+                registro[3] = rs.getString("SERVICIO");
+                registro[4] = rs.getString("FORMAPAGO");
+                registro[5] = rs.getString("TOTAL");
+                modelo.addRow(registro);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(JoinMultitablas.class.getName()).log(Level.SEVERE, null, ex);
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (conect != null)
+                {
+                    conect.close();
+                }
+
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(JoinMultitablas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return modelo;
+    }
+
+    public DefaultTableModel multitablaCitaServicioConsultasMascotaTutor()
+    {
+        String[] campos =
+        {
+            "IDCITA", "SERVICIO", "NOMBRE MASCOTA", "NOMBRE TUTOR", "CONSULTA", "FECHA", "HORA"
+        };
+        String[] registro = new String[7];
+        DefaultTableModel modelo = new DefaultTableModel(null, campos);
+        Connection conect = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try
+        {
+            String sql = "select "
+                    + "c.idcita, "
+                    + "ts.nombre SERVICIO, "
+                    + "m.nombre as \"NOMBRE MASCOTA\", "
+                    + "t.nombre as \"NOMBRE TUTOR\", "
+                    + "cs.detalles CONSULTA, "
+                    + "c.fecha, "
+                    + "c.hora "
+                    + "from Cita c, TipoServicio ts, Consultas cs, Mascota m, Tutor t "
+                    + "where c.idservicio = ts.idservicio "
+                    + "and cs.idconsulta = c.idconsulta "
+                    + "and m.idmascota = c.idmascota "
+                    + "and t.idtutor = m.idtutor "
+                    + "order by c.idcita ";
+            conect = Conexion.Conectar();
+            ps = conect.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next())
+            {
+                registro[0] = rs.getString("IDCITA");
+                registro[1] = rs.getString("SERVICIO");
+                registro[2] = rs.getString("NOMBRE MASCOTA");
+                registro[3] = rs.getString("NOMBRE TUTOR");
+                registro[4] = rs.getString("CONSULTA");
+                registro[5] = rs.getString("FECHA");
+                if (registro[5] != null)
+                {
+                    registro[5] = registro[5].substring(8, 10)
+                            + "/" + registro[5].substring(5, 7)
+                            + "/" + registro[5].substring(0, 4);
+                } else
+                {
+                    registro[5] = "Desconocida";
+                }
+                registro[6] = rs.getString("HORA");
+                modelo.addRow(registro);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(JoinMultitablas.class.getName()).log(Level.SEVERE, null, ex);
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (conect != null)
+                {
+                    conect.close();
+                }
+
+            } catch (SQLException ex)
+            {
+                Logger.getLogger(JoinMultitablas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return modelo;
+    }
 }

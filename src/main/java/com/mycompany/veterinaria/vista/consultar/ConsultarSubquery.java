@@ -4,25 +4,23 @@
  */
 package com.mycompany.veterinaria.vista.consultar;
 
-import com.mycompany.veterinaria.modelo.JoinMultitablas;
-import com.mycompany.veterinaria.vista.Joins;
+import com.mycompany.veterinaria.modelo.Subquery;
+import com.mycompany.veterinaria.vista.Subquerys;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Hernánez Vázquez Bryan, Montalvo Pérez Jonathan, Peña Reynoso Jesús
  */
-public class ConsultarJoins extends javax.swing.JFrame
+public class ConsultarSubquery extends javax.swing.JFrame
 {
 
     /**
-     * Creates new form ConsultarJoins
+     * Creates new form ConsultarSubquery
      */
-    public ConsultarJoins()
+    public ConsultarSubquery()
     {
         initComponents();
-        jScrollPane1.setVisible(false);
-        jScrollPane1.setVisible(false);
         this.setExtendedState(MAXIMIZED_BOTH);
     }
 
@@ -40,7 +38,7 @@ public class ConsultarJoins extends javax.swing.JFrame
         datos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cosulta Join");
+        setTitle("Consulta Subquery");
         addWindowListener(new java.awt.event.WindowAdapter()
         {
             public void windowActivated(java.awt.event.WindowEvent evt)
@@ -72,7 +70,7 @@ public class ConsultarJoins extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,41 +84,23 @@ public class ConsultarJoins extends javax.swing.JFrame
     private void formWindowClosed(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosed
     {//GEN-HEADEREND:event_formWindowClosed
         // TODO add your handling code here:
-        Joins.tipoJoin = 0;
+        Subquerys.tipoSubquery = 0;
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowActivated
     {//GEN-HEADEREND:event_formWindowActivated
         // TODO add your handling code here:
-        JoinMultitablas obj_Join = new JoinMultitablas();
-        switch (Joins.tipoJoin)
+        Subquery obj_Subquery = new Subquery();
+        switch (Subquerys.tipoSubquery)
         {
             case 0:
-                datos.setModel(obj_Join.joinTutorMascota());
-                this.setTitle("Join de Tutor y Mascota");
-                break;
-            case 1:
-                datos.setModel(obj_Join.leftJoinEmpleadosServicios());
-                this.setTitle("Left Join de Empleados y Servicios");
-                break;
-            case 2:
-                datos.setModel(obj_Join.joinCitaConsultas());
-                this.setTitle("Join de Cita y Consultas");
-                break;
-            case 3:
-                datos.setModel(obj_Join.multitablaVentasServicioInventarioProveedor());
-                this.setTitle("Multitabla de Ventas");
-                break;
-            case 4:
-                datos.setModel(obj_Join.multitablaCitaServicioConsultasMascotaTutor());
-                this.setTitle("Multitablas de Cita");
+                datos.setModel(obj_Subquery.subqueryMayorPromedioPrecio());
+                this.setTitle("Subquery de");
                 break;
             default:
-                JOptionPane.showMessageDialog(this, "OCURRIO UN ERROR 120" + Joins.tipoJoin, "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "OCURRIO UN ERROR 130" + Subquerys.tipoSubquery, "Error", JOptionPane.ERROR_MESSAGE);
                 break;
         }
-        jScrollPane1.setVisible(true);
-        datos.setVisible(true);
     }//GEN-LAST:event_formWindowActivated
 
     /**
@@ -145,16 +125,16 @@ public class ConsultarJoins extends javax.swing.JFrame
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(ConsultarJoins.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarSubquery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(ConsultarJoins.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarSubquery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(ConsultarJoins.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarSubquery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(ConsultarJoins.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarSubquery.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -163,7 +143,7 @@ public class ConsultarJoins extends javax.swing.JFrame
         {
             public void run()
             {
-                new ConsultarJoins().setVisible(true);
+                new ConsultarSubquery().setVisible(true);
             }
         });
     }

@@ -57,6 +57,8 @@ public class Principal extends javax.swing.JFrame
         btn_ModificarIcono = new javax.swing.JButton();
         btn_EliminarIcono = new javax.swing.JButton();
         btn_JoinsMultitablascono = new javax.swing.JButton();
+        btn_SubqueryIcono = new javax.swing.JButton();
+        btn_VistasIcono = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Veterinaria vet");
@@ -160,32 +162,72 @@ public class Principal extends javax.swing.JFrame
             }
         });
 
+        btn_SubqueryIcono.setBackground(new java.awt.Color(102, 204, 255));
+        btn_SubqueryIcono.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
+        btn_SubqueryIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/subquery.png"))); // NOI18N
+        btn_SubqueryIcono.setText("Subquery");
+        btn_SubqueryIcono.setContentAreaFilled(false);
+        btn_SubqueryIcono.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_SubqueryIcono.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/subqueryM.png"))); // NOI18N
+        btn_SubqueryIcono.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/subquery.png"))); // NOI18N
+        btn_SubqueryIcono.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_SubqueryIcono.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btn_SubqueryIconoActionPerformed(evt);
+            }
+        });
+
+        btn_VistasIcono.setBackground(new java.awt.Color(102, 204, 255));
+        btn_VistasIcono.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
+        btn_VistasIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/vista.png"))); // NOI18N
+        btn_VistasIcono.setText("Vistas");
+        btn_VistasIcono.setContentAreaFilled(false);
+        btn_VistasIcono.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_VistasIcono.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/vistaM.png"))); // NOI18N
+        btn_VistasIcono.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/vista.png"))); // NOI18N
+        btn_VistasIcono.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_VistasIcono.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btn_VistasIconoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_ModificarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_InsertarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_EliminarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_ConsultarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_JoinsMultitablascono, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addComponent(btn_CerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 258, Short.MAX_VALUE))
+                        .addGap(200, 200, 200)
+                        .addComponent(btn_CerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btn_ModificarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_InsertarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_EliminarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_SubqueryIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_VistasIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_ConsultarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_JoinsMultitablascono, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(0, 40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btn_InsertarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_ConsultarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,8 +235,10 @@ public class Principal extends javax.swing.JFrame
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_EliminarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_ModificarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                    .addComponent(btn_ModificarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_SubqueryIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_VistasIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(btn_CerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
         );
@@ -248,6 +292,20 @@ public class Principal extends javax.swing.JFrame
         jM.setVisible(true);
     }//GEN-LAST:event_btn_JoinsMultitablasconoActionPerformed
 
+    private void btn_SubqueryIconoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_SubqueryIconoActionPerformed
+    {//GEN-HEADEREND:event_btn_SubqueryIconoActionPerformed
+        // TODO add your handling code here:
+        Subquerys s = new Subquerys();
+        s.setVisible(true);
+    }//GEN-LAST:event_btn_SubqueryIconoActionPerformed
+
+    private void btn_VistasIconoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_VistasIconoActionPerformed
+    {//GEN-HEADEREND:event_btn_VistasIconoActionPerformed
+        // TODO add your handling code here:
+        Vistas v = new Vistas();
+        v.setVisible(true);
+    }//GEN-LAST:event_btn_VistasIconoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -300,6 +358,8 @@ public class Principal extends javax.swing.JFrame
     private javax.swing.JButton btn_InsertarIcono;
     private javax.swing.JButton btn_JoinsMultitablascono;
     private javax.swing.JButton btn_ModificarIcono;
+    private javax.swing.JButton btn_SubqueryIcono;
+    private javax.swing.JButton btn_VistasIcono;
     // End of variables declaration//GEN-END:variables
 
     public class ImagenFondo extends JPanel

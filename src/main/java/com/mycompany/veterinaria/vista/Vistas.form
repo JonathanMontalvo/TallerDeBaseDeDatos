@@ -3,7 +3,7 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Joins"/>
+    <Property name="title" type="java.lang.String" value="Vista"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -26,11 +26,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="combo_Joins" pref="367" max="32767" attributes="0"/>
+              <Component id="combo_Vistas" pref="450" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
               <Component id="btn_Aceptar" min="-2" pref="130" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -40,7 +40,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="combo_Joins" min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="combo_Vistas" min="-2" pref="35" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Component id="btn_Aceptar" min="-2" pref="140" max="-2" attributes="0"/>
               <EmptySpace pref="39" max="32767" attributes="0"/>
@@ -49,18 +49,16 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JComboBox" name="combo_Joins">
+    <Component class="javax.swing.JComboBox" name="combo_Vistas">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="30" style="1"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="Tutor y Mascota"/>
-            <StringItem index="1" value="Empleados y Servicios"/>
-            <StringItem index="2" value="Cita y Consulta"/>
-            <StringItem index="3" value="Ventas con nombres"/>
-            <StringItem index="4" value="Cita con nombres"/>
+          <StringArray count="3">
+            <StringItem index="0" value="Vista de perros de Mascotas"/>
+            <StringItem index="1" value="2"/>
+            <StringItem index="2" value="3"/>
           </StringArray>
         </Property>
       </Properties>
