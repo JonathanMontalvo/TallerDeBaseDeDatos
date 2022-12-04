@@ -48,7 +48,7 @@ public class Subquery
                     + "(select "
                     + "avg (precio) "
                     + "from Inventario) "
-                    + "order by precio ";
+                    + "order by idarticulo ";
             conect = Conexion.Conectar();
             ps = conect.prepareStatement(sql);
             rs = ps.executeQuery();

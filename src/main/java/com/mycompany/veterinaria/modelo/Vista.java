@@ -32,7 +32,7 @@ public class Vista
 
         try
         {
-            String sql = "create or replace view perros as"
+            String sql = "create or replace view perros as "
                     + "select "
                     + "idmascota, "
                     + "nombre, "
@@ -98,10 +98,19 @@ public class Vista
                 registro[2] = rs.getString("TIPO");
                 registro[3] = rs.getString("RAZA");
                 registro[4] = rs.getString("SEXO");
-                registro[1] = rs.getString("PESO");
-                registro[2] = rs.getString("MEDIDA");
-                registro[3] = rs.getString("FECHANACIMIENTO");
-                registro[4] = rs.getString("DETALLES");
+                registro[5] = rs.getString("PESO");
+                registro[6] = rs.getString("MEDIDA");
+                registro[7] = rs.getString("FECHANACIMIENTO");
+                if (registro[7] != null)
+                {
+                    registro[7] = registro[7].substring(8, 10)
+                            + "/" + registro[7].substring(5, 7)
+                            + "/" + registro[7].substring(0, 4);
+                } else
+                {
+                    registro[7] = "Desconocida";
+                }
+                registro[8] = rs.getString("DETALLES");
                 modelo.addRow(registro);
             }
         } catch (SQLException ex)

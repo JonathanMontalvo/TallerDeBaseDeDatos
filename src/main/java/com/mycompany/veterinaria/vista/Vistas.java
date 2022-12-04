@@ -93,11 +93,11 @@ public class Vistas extends javax.swing.JFrame
         // TODO add your handling code here:
         tipoVista = combo_Vistas.getSelectedIndex();
         ConsultarVista cV = new ConsultarVista();
-        Vista v = new Vista();
+        Vista vista = new Vista();
         switch (tipoVista)
         {
             case 0:
-                v.crearVistaPerros();
+                System.out.println("" + vista.crearVistaPerros());
                 cV.setVisible(true);
                 break;
             case 1:
