@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  */
 public class Principal extends javax.swing.JFrame
 {
-
+    
     public static int accion;
     public static int cadenaConsulta;
     public static int cadenaEmpleado;
@@ -56,6 +56,7 @@ public class Principal extends javax.swing.JFrame
         btn_ConsultarIcono = new javax.swing.JButton();
         btn_ModificarIcono = new javax.swing.JButton();
         btn_EliminarIcono = new javax.swing.JButton();
+        btn_JoinsMultitablascono = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Veterinaria vet");
@@ -142,6 +143,23 @@ public class Principal extends javax.swing.JFrame
             }
         });
 
+        btn_JoinsMultitablascono.setBackground(new java.awt.Color(0, 51, 102));
+        btn_JoinsMultitablascono.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
+        btn_JoinsMultitablascono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/joinMultitabla.png"))); // NOI18N
+        btn_JoinsMultitablascono.setText("Join/Multitabla");
+        btn_JoinsMultitablascono.setContentAreaFilled(false);
+        btn_JoinsMultitablascono.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_JoinsMultitablascono.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/joinMultitablaM.png"))); // NOI18N
+        btn_JoinsMultitablascono.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/joinMultitabla.png"))); // NOI18N
+        btn_JoinsMultitablascono.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_JoinsMultitablascono.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btn_JoinsMultitablasconoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,18 +169,18 @@ public class Principal extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btn_ModificarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_InsertarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addComponent(btn_EliminarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_ConsultarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_EliminarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(97, 97, 97))))
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_JoinsMultitablascono, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(200, 200, 200)
                 .addComponent(btn_CerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 258, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +188,8 @@ public class Principal extends javax.swing.JFrame
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btn_InsertarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_ConsultarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_ConsultarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_JoinsMultitablascono, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_EliminarIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,6 +241,13 @@ public class Principal extends javax.swing.JFrame
         this.dispose();
     }//GEN-LAST:event_btn_CerrarSesionActionPerformed
 
+    private void btn_JoinsMultitablasconoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_JoinsMultitablasconoActionPerformed
+    {//GEN-HEADEREND:event_btn_JoinsMultitablasconoActionPerformed
+        // TODO add your handling code here:
+        Joins jM = new Joins();
+        jM.setVisible(true);
+    }//GEN-LAST:event_btn_JoinsMultitablasconoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -272,12 +298,13 @@ public class Principal extends javax.swing.JFrame
     private javax.swing.JButton btn_ConsultarIcono;
     private javax.swing.JButton btn_EliminarIcono;
     private javax.swing.JButton btn_InsertarIcono;
+    private javax.swing.JButton btn_JoinsMultitablascono;
     private javax.swing.JButton btn_ModificarIcono;
     // End of variables declaration//GEN-END:variables
 
     public class ImagenFondo extends JPanel
     {
-
+        
         @Override
         public void paint(Graphics g)
         {
