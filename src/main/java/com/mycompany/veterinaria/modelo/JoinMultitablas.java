@@ -52,7 +52,7 @@ public class JoinMultitablas
                     + "from Tutor t "
                     + "join "
                     + "Mascota m "
-                    + "on t.idtutor = m.idtutor"
+                    + "on t.idtutor = m.idtutor "
                     + "order by t.idtutor asc";
             conect = Conexion.Conectar();
             ps = conect.prepareStatement(sql);
@@ -62,13 +62,13 @@ public class JoinMultitablas
                 registro[0] = rs.getString("IDTUTOR");
                 registro[1] = rs.getString("NOMBRE TUTOR");
                 registro[2] = rs.getString("TELEFONO");
-                registro[3] = rs.getString("");
-                registro[4] = rs.getString("");
-                registro[5] = rs.getString("");
-                registro[6] = rs.getString("");
-                registro[7] = rs.getString("");
-                registro[8] = rs.getString("");
-                registro[9] = rs.getString("");
+                registro[3] = rs.getString("DIRECCION");
+                registro[4] = rs.getString("NOMBRE MASCOTA");
+                registro[5] = rs.getString("TIPO");
+                registro[6] = rs.getString("RAZA");
+                registro[7] = rs.getString("SEXO");
+                registro[8] = rs.getString("PESO");
+                registro[9] = rs.getString("DETALLES");
                 modelo.addRow(registro);
             }
         } catch (SQLException ex)

@@ -103,6 +103,8 @@ public class ConsultarJoins extends javax.swing.JFrame
                 JOptionPane.showMessageDialog(this, "OCURRIO UN ERROR 120" + Joins.tipoJoin, "Error", JOptionPane.ERROR_MESSAGE);
                 break;
         }
+        jScrollPane1.setVisible(true);
+        datos.setVisible(true);
     }//GEN-LAST:event_formWindowActivated
 
     /**
