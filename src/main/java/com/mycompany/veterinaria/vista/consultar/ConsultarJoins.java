@@ -92,12 +92,21 @@ public class ConsultarJoins extends javax.swing.JFrame
     private void formWindowActivated(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowActivated
     {//GEN-HEADEREND:event_formWindowActivated
         // TODO add your handling code here:
+        JoinMultitablas obj_Join = new JoinMultitablas();
         switch (Joins.tipoJoin)
         {
             case 0:
-                JoinMultitablas obj_Join = new JoinMultitablas();
+
                 datos.setModel(obj_Join.joinTutorMascota());
                 this.setTitle("Join de Tutor y Mascota");
+                break;
+            case 1:
+                datos.setModel(obj_Join.leftJoinEmpleadosServicios());
+                this.setTitle("Left Join de Empleados y Servicios");
+                break;
+            case 2:
+                datos.setModel(obj_Join.joinCitaConsultas());
+                this.setTitle("Join de Cita y Consultas");
                 break;
             default:
                 JOptionPane.showMessageDialog(this, "OCURRIO UN ERROR 120" + Joins.tipoJoin, "Error", JOptionPane.ERROR_MESSAGE);

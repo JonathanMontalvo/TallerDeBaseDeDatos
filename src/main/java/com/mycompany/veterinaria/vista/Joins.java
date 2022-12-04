@@ -42,7 +42,7 @@ public class Joins extends javax.swing.JFrame
         setTitle("Joins");
 
         combo_Join.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
-        combo_Join.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tutor y Mascota" }));
+        combo_Join.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tutor y Mascota", "Empleados y Servicios", "Cita y Consulta" }));
 
         btn_Aceptar.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
         btn_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/aceptar.png"))); // NOI18N
@@ -97,6 +97,12 @@ public class Joins extends javax.swing.JFrame
         switch (tipoJoin)
         {
             case 0:
+                cJ.setVisible(true);
+                break;
+            case 1:
+                cJ.setVisible(true);
+                break;
+            case 2:
                 cJ.setVisible(true);
                 break;
             default:

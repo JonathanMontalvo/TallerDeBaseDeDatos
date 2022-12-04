@@ -58,8 +58,10 @@
           <Font name="Times New Roman" size="30" style="1"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
+          <StringArray count="3">
             <StringItem index="0" value="Tutor y Mascota"/>
+            <StringItem index="1" value="Empleados y Servicios"/>
+            <StringItem index="2" value="Cita y Consulta"/>
           </StringArray>
         </Property>
       </Properties>
