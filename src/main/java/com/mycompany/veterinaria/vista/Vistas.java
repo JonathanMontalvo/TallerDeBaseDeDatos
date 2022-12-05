@@ -7,6 +7,7 @@ package com.mycompany.veterinaria.vista;
 import com.mycompany.veterinaria.modelo.Vista;
 import com.mycompany.veterinaria.vista.consultar.ConsultarVista;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -91,6 +92,8 @@ public class Vistas extends javax.swing.JFrame
     private void btn_AceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_AceptarActionPerformed
     {//GEN-HEADEREND:event_btn_AceptarActionPerformed
         // TODO add your handling code here:
+        LookandFeelFrames.lFMint();
+        SwingUtilities.updateComponentTreeUI(this);
         tipoVista = combo_Vistas.getSelectedIndex();
         ConsultarVista cV = new ConsultarVista();
         Vista vista = new Vista();

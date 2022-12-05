@@ -12,6 +12,7 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -107,6 +108,8 @@ public class Entidad extends javax.swing.JFrame
     private void btn_AceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_AceptarActionPerformed
     {//GEN-HEADEREND:event_btn_AceptarActionPerformed
         // TODO add your handling code here:
+        LookandFeelFrames.lFMint();
+        SwingUtilities.updateComponentTreeUI(this);
         switch (Principal.accion)
         {
             case 1:
