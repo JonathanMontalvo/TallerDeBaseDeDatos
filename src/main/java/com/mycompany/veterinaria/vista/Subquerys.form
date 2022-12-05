@@ -57,8 +57,8 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
             <StringItem index="0" value="Mayor al promedio de precio del Inventario"/>
-            <StringItem index="1" value="2"/>
-            <StringItem index="2" value="3"/>
+            <StringItem index="1" value="Cita por nombre de la Mascota"/>
+            <StringItem index="2" value="Mascota por el nombre del Tutor"/>
           </StringArray>
         </Property>
       </Properties>

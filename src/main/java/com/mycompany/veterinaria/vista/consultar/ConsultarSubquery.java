@@ -7,6 +7,7 @@ package com.mycompany.veterinaria.vista.consultar;
 import com.mycompany.veterinaria.modelo.Subquery;
 import com.mycompany.veterinaria.vista.Subquerys;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,11 +16,14 @@ import javax.swing.JOptionPane;
 public class ConsultarSubquery extends javax.swing.JFrame
 {
 
+    private static boolean bandera;
+
     /**
      * Creates new form ConsultarSubquery
      */
     public ConsultarSubquery()
     {
+        bandera = true;
         initComponents();
         jScrollPane1.setVisible(false);
         datos.setVisible(false);
@@ -98,6 +102,30 @@ public class ConsultarSubquery extends javax.swing.JFrame
             case 0:
                 datos.setModel(obj_Subquery.subqueryMayorPromedioPrecio());
                 this.setTitle("Subquery de mayor al promedio de precio del Inventario");
+                break;
+            case 1:
+                if (bandera)
+                {
+                    String nombre = "";
+                    nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre de la Mascota: ", "Capturar Datos", JOptionPane.QUESTION_MESSAGE);
+                    datos.setModel(obj_Subquery.subqueryCitaPorNombreMascota(nombre));
+                    this.setTitle("Subquery de cita por el nombre de la Mascota");
+                    this.hide();
+                    this.show();
+                    bandera = false;
+                }
+                break;
+            case 2:
+                if (bandera)
+                {
+                    String nombre = "";
+                    nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre del Tutor: ", "Capturar Datos", JOptionPane.QUESTION_MESSAGE);
+                    datos.setModel(obj_Subquery.subqueryMascotaPorNombreTutor(nombre));
+                    this.setTitle("Subquery de mascota por el nombre del Tutor");
+                    this.hide();
+                    this.show();
+                    bandera = false;
+                }
                 break;
             default:
                 JOptionPane.showMessageDialog(this, "OCURRIO UN ERROR 130" + Subquerys.tipoSubquery, "Error", JOptionPane.ERROR_MESSAGE);

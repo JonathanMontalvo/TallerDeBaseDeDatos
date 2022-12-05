@@ -42,7 +42,7 @@ public class Subquerys extends javax.swing.JFrame
         setTitle("Subquery");
 
         combo_Subquerys.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
-        combo_Subquerys.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mayor al promedio de precio del Inventario", "2", "3" }));
+        combo_Subquerys.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mayor al promedio de precio del Inventario", "Cita por nombre de la Mascota", "Mascota por el nombre del Tutor" }));
 
         btn_Aceptar.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
         btn_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/aceptar.png"))); // NOI18N
