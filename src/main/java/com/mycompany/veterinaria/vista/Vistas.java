@@ -43,7 +43,7 @@ public class Vistas extends javax.swing.JFrame
         setTitle("Vista");
 
         combo_Vistas.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
-        combo_Vistas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vista de perros de Mascotas", "2", "3" }));
+        combo_Vistas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mascotas que son Perros", "Artículos que son Alimento", "Empleados mayores a 35 años" }));
 
         btn_Aceptar.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
         btn_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/aceptar.png"))); // NOI18N
@@ -97,15 +97,15 @@ public class Vistas extends javax.swing.JFrame
         switch (tipoVista)
         {
             case 0:
-                System.out.println("" + vista.crearVistaPerros());
+                System.out.println("Vista Perros: " + vista.crearVistaPerros());
                 cV.setVisible(true);
                 break;
             case 1:
-                //v.crearVistaPerros();
+                System.out.println("Vista Alimentos: " + vista.crearVistaAlimentos());
                 cV.setVisible(true);
                 break;
             case 2:
-                //v.crearVistaPerros();
+                System.out.println("Vista Empleados35: " + vista.crearVistaEmpleados35());
                 cV.setVisible(true);
                 break;
             default:

@@ -97,7 +97,15 @@ public class ConsultarVista extends javax.swing.JFrame
         {
             case 0:
                 datos.setModel(obj_Vista.consultarVistaPerros());
-                this.setTitle("Vista de perros");
+                this.setTitle("Vista de Perros");
+                break;
+            case 1:
+                datos.setModel(obj_Vista.consultarVistaAlimentos());
+                this.setTitle("Vista de Alimento");
+                break;
+            case 2:
+                datos.setModel(obj_Vista.consultarVistaEmpleados35());
+                this.setTitle("Vista de Empleados mayores a 35 años");
                 break;
             default:
                 JOptionPane.showMessageDialog(this, "OCURRIO UN ERROR 140" + Vistas.tipoVista, "Error", JOptionPane.ERROR_MESSAGE);
