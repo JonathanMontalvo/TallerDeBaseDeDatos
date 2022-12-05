@@ -135,6 +135,7 @@ public class Entidad extends javax.swing.JFrame
     {//GEN-HEADEREND:event_formWindowClosed
         // TODO add your handling code here:
         Principal.accion = 0;
+        Principal.activarBotones();
     }//GEN-LAST:event_formWindowClosed
 
     private void insertar(int entidad)
@@ -292,7 +293,8 @@ public class Entidad extends javax.swing.JFrame
     private javax.swing.JButton btn_Aceptar;
     private javax.swing.JComboBox<String> combo_Tablas;
     // End of variables declaration//GEN-END:variables
-public class ImagenFondo extends JPanel
+
+    public class ImagenFondo extends JPanel
     {
 
         @Override

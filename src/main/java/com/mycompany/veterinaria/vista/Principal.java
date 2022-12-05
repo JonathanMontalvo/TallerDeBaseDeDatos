@@ -7,6 +7,7 @@ package com.mycompany.veterinaria.vista;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -14,7 +15,7 @@ import javax.swing.JPanel;
  */
 public class Principal extends javax.swing.JFrame
 {
-    
+
     public static int accion;
     public static int cadenaConsulta;
     public static int cadenaEmpleado;
@@ -250,6 +251,9 @@ public class Principal extends javax.swing.JFrame
     private void btn_InsertarIconoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_InsertarIconoActionPerformed
     {//GEN-HEADEREND:event_btn_InsertarIconoActionPerformed
         // TODO add your handling code here:
+        desactivarBotones();
+        LookandFeelFrames.lFNimbus();
+        SwingUtilities.updateComponentTreeUI(this);
         accion = 1;
         Entidad e = new Entidad();
         e.setVisible(true);
@@ -258,6 +262,9 @@ public class Principal extends javax.swing.JFrame
     private void btn_ConsultarIconoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_ConsultarIconoActionPerformed
     {//GEN-HEADEREND:event_btn_ConsultarIconoActionPerformed
         // TODO add your handling code here:
+        desactivarBotones();
+        LookandFeelFrames.lFNimbus();
+        SwingUtilities.updateComponentTreeUI(this);
         accion = 2;
         Entidad e = new Entidad();
         e.setVisible(true);
@@ -266,6 +273,9 @@ public class Principal extends javax.swing.JFrame
     private void btn_ModificarIconoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_ModificarIconoActionPerformed
     {//GEN-HEADEREND:event_btn_ModificarIconoActionPerformed
         // TODO add your handling code here:
+        desactivarBotones();
+        LookandFeelFrames.lFNimbus();
+        SwingUtilities.updateComponentTreeUI(this);
         accion = 3;
         Entidad e = new Entidad();
         e.setVisible(true);
@@ -274,6 +284,9 @@ public class Principal extends javax.swing.JFrame
     private void btn_EliminarIconoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_EliminarIconoActionPerformed
     {//GEN-HEADEREND:event_btn_EliminarIconoActionPerformed
         // TODO add your handling code here:
+        desactivarBotones();
+        LookandFeelFrames.lFNimbus();
+        SwingUtilities.updateComponentTreeUI(this);
         accion = 4;
         Entidad e = new Entidad();
         e.setVisible(true);
@@ -288,6 +301,9 @@ public class Principal extends javax.swing.JFrame
     private void btn_JoinsMultitablasconoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_JoinsMultitablasconoActionPerformed
     {//GEN-HEADEREND:event_btn_JoinsMultitablasconoActionPerformed
         // TODO add your handling code here:
+        desactivarBotones();
+        LookandFeelFrames.lFNimbus();
+        SwingUtilities.updateComponentTreeUI(this);
         Joins jM = new Joins();
         jM.setVisible(true);
     }//GEN-LAST:event_btn_JoinsMultitablasconoActionPerformed
@@ -295,6 +311,9 @@ public class Principal extends javax.swing.JFrame
     private void btn_SubqueryIconoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_SubqueryIconoActionPerformed
     {//GEN-HEADEREND:event_btn_SubqueryIconoActionPerformed
         // TODO add your handling code here:
+        desactivarBotones();
+        LookandFeelFrames.lFNimbus();
+        SwingUtilities.updateComponentTreeUI(this);
         Subquerys s = new Subquerys();
         s.setVisible(true);
     }//GEN-LAST:event_btn_SubqueryIconoActionPerformed
@@ -302,9 +321,34 @@ public class Principal extends javax.swing.JFrame
     private void btn_VistasIconoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_VistasIconoActionPerformed
     {//GEN-HEADEREND:event_btn_VistasIconoActionPerformed
         // TODO add your handling code here:
+        desactivarBotones();
+        LookandFeelFrames.lFNimbus();
+        SwingUtilities.updateComponentTreeUI(this);
         Vistas v = new Vistas();
         v.setVisible(true);
     }//GEN-LAST:event_btn_VistasIconoActionPerformed
+
+    public static void activarBotones()
+    {
+        Principal.btn_ConsultarIcono.setEnabled(true);
+        Principal.btn_EliminarIcono.setEnabled(true);
+        Principal.btn_InsertarIcono.setEnabled(true);
+        Principal.btn_JoinsMultitablascono.setEnabled(true);
+        Principal.btn_ModificarIcono.setEnabled(true);
+        Principal.btn_SubqueryIcono.setEnabled(true);
+        Principal.btn_VistasIcono.setEnabled(true);
+    }
+
+    public static void desactivarBotones()
+    {
+        Principal.btn_ConsultarIcono.setEnabled(false);
+        Principal.btn_EliminarIcono.setEnabled(false);
+        Principal.btn_InsertarIcono.setEnabled(false);
+        Principal.btn_JoinsMultitablascono.setEnabled(false);
+        Principal.btn_ModificarIcono.setEnabled(false);
+        Principal.btn_SubqueryIcono.setEnabled(false);
+        Principal.btn_VistasIcono.setEnabled(false);
+    }
 
     /**
      * @param args the command line arguments
@@ -353,18 +397,18 @@ public class Principal extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_CerrarSesion;
-    private javax.swing.JButton btn_ConsultarIcono;
-    private javax.swing.JButton btn_EliminarIcono;
-    private javax.swing.JButton btn_InsertarIcono;
-    private javax.swing.JButton btn_JoinsMultitablascono;
-    private javax.swing.JButton btn_ModificarIcono;
-    private javax.swing.JButton btn_SubqueryIcono;
-    private javax.swing.JButton btn_VistasIcono;
+    public static javax.swing.JButton btn_ConsultarIcono;
+    public static javax.swing.JButton btn_EliminarIcono;
+    public static javax.swing.JButton btn_InsertarIcono;
+    public static javax.swing.JButton btn_JoinsMultitablascono;
+    public static javax.swing.JButton btn_ModificarIcono;
+    public static javax.swing.JButton btn_SubqueryIcono;
+    public static javax.swing.JButton btn_VistasIcono;
     // End of variables declaration//GEN-END:variables
 
     public class ImagenFondo extends JPanel
     {
-        
+
         @Override
         public void paint(Graphics g)
         {

@@ -5,7 +5,10 @@
 package com.mycompany.veterinaria.vista;
 
 import com.mycompany.veterinaria.vista.consultar.ConsultarJoins;
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 /**
@@ -23,6 +26,7 @@ public class Joins extends javax.swing.JFrame
     public Joins()
     {
         tipoJoin = 0;
+        this.setContentPane(new ImagenFondo());
         initComponents();
     }
 
@@ -41,6 +45,13 @@ public class Joins extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Joins");
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowClosed(java.awt.event.WindowEvent evt)
+            {
+                formWindowClosed(evt);
+            }
+        });
 
         combo_Joins.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
         combo_Joins.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tutor y Mascota", "Empleados y Servicios", "Cita y Consulta", "Ventas con nombres", "Cita con nombres" }));
@@ -120,6 +131,12 @@ public class Joins extends javax.swing.JFrame
         this.dispose();
     }//GEN-LAST:event_btn_AceptarActionPerformed
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosed
+    {//GEN-HEADEREND:event_formWindowClosed
+        // TODO add your handling code here:
+        Principal.activarBotones();
+    }//GEN-LAST:event_formWindowClosed
+
     /**
      * @param args the command line arguments
      */
@@ -169,4 +186,18 @@ public class Joins extends javax.swing.JFrame
     private javax.swing.JButton btn_Aceptar;
     private javax.swing.JComboBox<String> combo_Joins;
     // End of variables declaration//GEN-END:variables
+
+    public class ImagenFondo extends JPanel
+    {
+
+        @Override
+        public void paint(Graphics g)
+        {
+            //ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/fondo1.png"));
+            ImageIcon fondo = new ImageIcon(getClass().getResource("/imagenes/fondo2.png"));
+            g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), this);
+            setOpaque(false);
+            super.paint(g);
+        }
+    }
 }
