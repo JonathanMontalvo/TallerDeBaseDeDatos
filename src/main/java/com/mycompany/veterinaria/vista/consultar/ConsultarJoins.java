@@ -6,6 +6,7 @@ package com.mycompany.veterinaria.vista.consultar;
 
 import com.mycompany.veterinaria.modelo.JoinMultitablas;
 import com.mycompany.veterinaria.vista.Joins;
+import com.mycompany.veterinaria.vista.Principal;
 import javax.swing.JOptionPane;
 
 /**
@@ -87,6 +88,7 @@ public class ConsultarJoins extends javax.swing.JFrame
     {//GEN-HEADEREND:event_formWindowClosed
         // TODO add your handling code here:
         Joins.tipoJoin = 0;
+        Principal.activarBotones();
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowActivated

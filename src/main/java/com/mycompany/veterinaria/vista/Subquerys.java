@@ -18,6 +18,7 @@ import javax.swing.SwingUtilities;
 public class Subquerys extends javax.swing.JFrame
 {
 
+    private boolean bandera;
     public static int tipoSubquery;
 
     /**
@@ -25,6 +26,7 @@ public class Subquerys extends javax.swing.JFrame
      */
     public Subquerys()
     {
+        bandera = true;
         tipoSubquery = 0;
         this.setContentPane(new ImagenFondo());
         initComponents();
@@ -102,6 +104,7 @@ public class Subquerys extends javax.swing.JFrame
     private void btn_AceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_AceptarActionPerformed
     {//GEN-HEADEREND:event_btn_AceptarActionPerformed
         // TODO add your handling code here:
+        bandera = false;
         LookandFeelFrames.lFMint();
         SwingUtilities.updateComponentTreeUI(this);
         tipoSubquery = combo_Subquerys.getSelectedIndex();
@@ -128,7 +131,10 @@ public class Subquerys extends javax.swing.JFrame
     private void formWindowClosed(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosed
     {//GEN-HEADEREND:event_formWindowClosed
         // TODO add your handling code here:
-        Principal.activarBotones();
+        if (bandera)
+        {
+            Principal.activarBotones();
+        }
     }//GEN-LAST:event_formWindowClosed
 
     /**

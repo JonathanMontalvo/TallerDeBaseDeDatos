@@ -18,6 +18,7 @@ import javax.swing.SwingUtilities;
 public class Joins extends javax.swing.JFrame
 {
 
+    private boolean bandera;
     public static int tipoJoin;
 
     /**
@@ -25,6 +26,7 @@ public class Joins extends javax.swing.JFrame
      */
     public Joins()
     {
+        bandera = true;
         tipoJoin = 0;
         this.setContentPane(new ImagenFondo());
         initComponents();
@@ -102,6 +104,7 @@ public class Joins extends javax.swing.JFrame
     private void btn_AceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_AceptarActionPerformed
     {//GEN-HEADEREND:event_btn_AceptarActionPerformed
         // TODO add your handling code here:
+        bandera = false;
         LookandFeelFrames.lFMint();
         SwingUtilities.updateComponentTreeUI(this);
         tipoJoin = combo_Joins.getSelectedIndex();
@@ -134,7 +137,10 @@ public class Joins extends javax.swing.JFrame
     private void formWindowClosed(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosed
     {//GEN-HEADEREND:event_formWindowClosed
         // TODO add your handling code here:
-        Principal.activarBotones();
+        if (bandera)
+        {
+            Principal.activarBotones();
+        }
     }//GEN-LAST:event_formWindowClosed
 
     /**

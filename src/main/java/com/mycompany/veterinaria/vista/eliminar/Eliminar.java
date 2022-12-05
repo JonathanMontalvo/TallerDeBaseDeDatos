@@ -6,6 +6,7 @@ package com.mycompany.veterinaria.vista.eliminar;
 
 import com.mycompany.veterinaria.modelo.*;
 import com.mycompany.veterinaria.vista.Entidad;
+import com.mycompany.veterinaria.vista.Principal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -328,6 +329,7 @@ public class Eliminar extends javax.swing.JFrame
     {//GEN-HEADEREND:event_formWindowClosed
         // TODO add your handling code here:
         Entidad.eliminar = 0;
+        Principal.activarBotones();
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened

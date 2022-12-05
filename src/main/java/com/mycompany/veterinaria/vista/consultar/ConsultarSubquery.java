@@ -5,6 +5,7 @@
 package com.mycompany.veterinaria.vista.consultar;
 
 import com.mycompany.veterinaria.modelo.Subquery;
+import com.mycompany.veterinaria.vista.Principal;
 import com.mycompany.veterinaria.vista.Subquerys;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -91,6 +92,7 @@ public class ConsultarSubquery extends javax.swing.JFrame
     {//GEN-HEADEREND:event_formWindowClosed
         // TODO add your handling code here:
         Subquerys.tipoSubquery = 0;
+        Principal.activarBotones();
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowActivated

@@ -21,6 +21,7 @@ import javax.swing.SwingUtilities;
 public class Entidad extends javax.swing.JFrame
 {
 
+    private boolean bandera;
     public static int consulta;
     public static int eliminar;
 
@@ -29,6 +30,7 @@ public class Entidad extends javax.swing.JFrame
      */
     public Entidad()
     {
+        bandera = true;
         consulta = 0;
         eliminar = 0;
         this.setContentPane(new ImagenFondo());
@@ -108,6 +110,7 @@ public class Entidad extends javax.swing.JFrame
     private void btn_AceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btn_AceptarActionPerformed
     {//GEN-HEADEREND:event_btn_AceptarActionPerformed
         // TODO add your handling code here:
+        bandera = false;
         LookandFeelFrames.lFMint();
         SwingUtilities.updateComponentTreeUI(this);
         switch (Principal.accion)
@@ -135,7 +138,10 @@ public class Entidad extends javax.swing.JFrame
     {//GEN-HEADEREND:event_formWindowClosed
         // TODO add your handling code here:
         Principal.accion = 0;
-        Principal.activarBotones();
+        if (bandera)
+        {
+            Principal.activarBotones();
+        }
     }//GEN-LAST:event_formWindowClosed
 
     private void insertar(int entidad)

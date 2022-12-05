@@ -5,6 +5,7 @@
 package com.mycompany.veterinaria.vista.consultar;
 
 import com.mycompany.veterinaria.modelo.Vista;
+import com.mycompany.veterinaria.vista.Principal;
 import com.mycompany.veterinaria.vista.Vistas;
 import javax.swing.JOptionPane;
 
@@ -87,6 +88,7 @@ public class ConsultarVista extends javax.swing.JFrame
     {//GEN-HEADEREND:event_formWindowClosed
         // TODO add your handling code here:
         Vistas.tipoVista = 0;
+        Principal.activarBotones();
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowActivated

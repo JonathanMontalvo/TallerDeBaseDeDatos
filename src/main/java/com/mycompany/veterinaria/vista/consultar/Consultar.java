@@ -86,6 +86,7 @@ public class Consultar extends javax.swing.JFrame
     private void formWindowActivated(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowActivated
     {//GEN-HEADEREND:event_formWindowActivated
         // TODO add your handling code here:
+        Principal.desactivarBotones();
         switch (Entidad.consulta)
         {
             case 1:
@@ -145,6 +146,7 @@ public class Consultar extends javax.swing.JFrame
     {//GEN-HEADEREND:event_formWindowClosed
         // TODO add your handling code here:
         Entidad.consulta = 0;
+        Principal.activarBotones();
     }//GEN-LAST:event_formWindowClosed
 
     /**
