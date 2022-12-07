@@ -148,7 +148,7 @@ public class Eliminar extends javax.swing.JFrame
                     r = cita.eliminar((int) combo_Eliminar.getSelectedItem());
                     if (r != 0)
                     {
-                        llenarCombo_IdCita();
+                        //llenarCombo_IdCita();
                         JOptionPane.showMessageDialog(null, "Cita eliminada");
                         jLabel1.setText("Seleccione el id de la cita a eliminar: ");
                     } else
@@ -162,7 +162,7 @@ public class Eliminar extends javax.swing.JFrame
                     r = consultas.eliminar((int) combo_Eliminar.getSelectedItem());
                     if (r != 0)
                     {
-                        llenarCombo_IdCita();
+                        //llenarCombo_IdCita();
                         JOptionPane.showMessageDialog(null, "Consulta eliminada");
                         jLabel1.setText("Seleccione el id de la consulta a eliminar: ");
                     } else
@@ -176,7 +176,7 @@ public class Eliminar extends javax.swing.JFrame
                     r = empleados.eliminar((int) combo_Eliminar.getSelectedItem());
                     if (r != 0)
                     {
-                        llenarCombo_IdEmpleado();
+                        //llenarCombo_IdEmpleado();
                         JOptionPane.showMessageDialog(null, "Empleado eliminado");
                         jLabel1.setText("Seleccione el id del empleado a eliminar: ");
                     } else
@@ -190,7 +190,7 @@ public class Eliminar extends javax.swing.JFrame
                     r = inventario.eliminar((int) combo_Eliminar.getSelectedItem());
                     if (r != 0)
                     {
-                        llenarCombo_IdArticulo();
+                        //llenarCombo_IdArticulo();
                         JOptionPane.showMessageDialog(null, "Artículo eliminado");
                         jLabel1.setText("Seleccione el id del artículo a eliminar: ");
                     } else
@@ -204,7 +204,7 @@ public class Eliminar extends javax.swing.JFrame
                     r = mascota.eliminar((int) combo_Eliminar.getSelectedItem());
                     if (r != 0)
                     {
-                        llenarCombo_IdMascota();
+                        //llenarCombo_IdMascota();
                         JOptionPane.showMessageDialog(null, "Mascota eliminada");
                         jLabel1.setText("Seleccione el id de la mascota a eliminar: ");
                     } else
@@ -218,7 +218,7 @@ public class Eliminar extends javax.swing.JFrame
                     r = proveedores.eliminar((int) combo_Eliminar.getSelectedItem());
                     if (r != 0)
                     {
-                        llenarCombo_IdProveedor();
+                        //llenarCombo_IdProveedor();
                         JOptionPane.showMessageDialog(null, "Proveedor eliminado");
                         jLabel1.setText("Seleccione el id del proveedor a eliminar: ");
                     } else
@@ -232,7 +232,7 @@ public class Eliminar extends javax.swing.JFrame
                     r = tipodeservicio.eliminar((int) combo_Eliminar.getSelectedItem());
                     if (r != 0)
                     {
-                        llenarCombo_IdServicio();
+                        //llenarCombo_IdServicio();
                         JOptionPane.showMessageDialog(null, "Servicio eliminado");
                         jLabel1.setText("Seleccione el id del tipo de servicio a eliminar: ");
                     } else
@@ -246,7 +246,7 @@ public class Eliminar extends javax.swing.JFrame
                     r = tutor.eliminar((int) combo_Eliminar.getSelectedItem());
                     if (r != 0)
                     {
-                        llenarCombo_IdTutor();
+                        //llenarCombo_IdTutor();
                         JOptionPane.showMessageDialog(null, "Tutor eliminado");
                         jLabel1.setText("Seleccione el id del tutor a eliminar: ");
                     } else
@@ -260,7 +260,7 @@ public class Eliminar extends javax.swing.JFrame
                     r = ventas.eliminar((int) combo_Eliminar.getSelectedItem());
                     if (r != 0)
                     {
-                        llenarCombo_IdVentas();
+                        //llenarCombo_IdVentas();
                         JOptionPane.showMessageDialog(null, "Venta eliminada");
                         jLabel1.setText("Selecciona el id de la venta a eliminar: ");
                     } else
@@ -273,6 +273,7 @@ public class Eliminar extends javax.swing.JFrame
                     JOptionPane.showMessageDialog(this, "OCURRIO UN ERROR 7" + Entidad.eliminar, "Error", JOptionPane.ERROR_MESSAGE);
                     break;
             }
+            this.dispose();
             combo_Eliminar.setVisible(true);
             btn_Eliminar.setVisible(true);
         }
