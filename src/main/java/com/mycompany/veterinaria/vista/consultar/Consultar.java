@@ -134,6 +134,11 @@ public class Consultar extends javax.swing.JFrame
                 datos.setModel(obj_ventas.consultar());
                 this.setTitle("Consulta Ventas");
                 break;
+            case 10:
+                Despidos obj_despidos = new Despidos();
+                datos.setModel(obj_despidos.consultar());
+                this.setTitle("Consulta Despidos");
+                break;
             default:
                 JOptionPane.showMessageDialog(this, "OCURRIO UN ERROR 3" + Principal.accion, "Error", JOptionPane.ERROR_MESSAGE);
                 break;

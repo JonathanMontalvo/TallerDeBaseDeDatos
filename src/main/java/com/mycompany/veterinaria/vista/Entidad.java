@@ -62,7 +62,7 @@ public class Entidad extends javax.swing.JFrame
         });
 
         combo_Tablas.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
-        combo_Tablas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cita", "Consultas", "Empleados", "Inventario", "Mascota", "Proveedores", "Tipo de Servicio", "Tutor", "Ventas" }));
+        combo_Tablas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cita", "Consultas", "Empleados", "Inventario", "Mascota", "Proveedores", "Tipo de Servicio", "Tutor", "Ventas", "Despidos" }));
 
         btn_Aceptar.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
         btn_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/aceptar.png"))); // NOI18N
