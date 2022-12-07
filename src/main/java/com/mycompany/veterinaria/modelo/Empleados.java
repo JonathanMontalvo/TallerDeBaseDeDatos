@@ -195,7 +195,7 @@ public class Empleados
 
         try
         {
-            String sql = "insert into Empleados (idempleado, nombre, apellidopa, apellidoma, areatrabajo, telefono, correo, fechanacimiento) values (2077011,?,?,?,?,?,?,?)";
+            String sql = "insert into Empleados (idempleado, nombre, apellidopa, apellidoma, areatrabajo, telefono, correo, fechanacimiento) values (idEmpleados.nextval,?,?,?,?,?,?,?)";
             conect = Conexion.Conectar();
             ps = conect.prepareStatement(sql);
             ps.setString(1, nombre);
