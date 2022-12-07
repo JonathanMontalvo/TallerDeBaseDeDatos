@@ -20,7 +20,7 @@ import javax.swing.SwingUtilities;
  */
 public class Entidad extends javax.swing.JFrame
 {
-
+    
     private boolean bandera;
     public static int consulta;
     public static int eliminar;
@@ -35,6 +35,10 @@ public class Entidad extends javax.swing.JFrame
         eliminar = 0;
         this.setContentPane(new ImagenFondo());
         initComponents();
+        if (Principal.accion == 2)
+        {
+            combo_Tablas.addItem("Despidos");
+        }
     }
 
     /**
@@ -62,7 +66,7 @@ public class Entidad extends javax.swing.JFrame
         });
 
         combo_Tablas.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
-        combo_Tablas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cita", "Consultas", "Empleados", "Inventario", "Mascota", "Proveedores", "Tipo de Servicio", "Tutor", "Ventas", "Despidos" }));
+        combo_Tablas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cita", "Consultas", "Empleados", "Inventario", "Mascota", "Proveedores", "Tipo de Servicio", "Tutor", "Ventas" }));
 
         btn_Aceptar.setFont(new java.awt.Font("Times New Roman", 1, 30)); // NOI18N
         btn_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/aceptar.png"))); // NOI18N
@@ -143,7 +147,7 @@ public class Entidad extends javax.swing.JFrame
             Principal.activarBotones();
         }
     }//GEN-LAST:event_formWindowClosed
-
+    
     private void insertar(int entidad)
     {
         switch (entidad)
@@ -189,14 +193,14 @@ public class Entidad extends javax.swing.JFrame
                 break;
         }
     }
-
+    
     private void consultar(int entidad)
     {
         consulta = entidad + 1;
         Consultar consultar = new Consultar();
         consultar.setVisible(true);
     }
-
+    
     private void modificar(int entidad)
     {
         switch (entidad)
@@ -242,7 +246,7 @@ public class Entidad extends javax.swing.JFrame
                 break;
         }
     }
-
+    
     private void eliminar(int entidad)
     {
         eliminar = entidad + 1;
@@ -302,7 +306,7 @@ public class Entidad extends javax.swing.JFrame
 
     public class ImagenFondo extends JPanel
     {
-
+        
         @Override
         public void paint(Graphics g)
         {
