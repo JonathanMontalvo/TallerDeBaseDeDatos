@@ -63,6 +63,13 @@ public class ModifEmpleados extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Empleado");
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowClosed(java.awt.event.WindowEvent evt)
+            {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Seleccione los campos que desea modificar: ");
@@ -214,8 +221,6 @@ public class ModifEmpleados extends javax.swing.JFrame
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel8.getAccessibleContext().setAccessibleName("Cambie el área de trabajo: ");
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -317,6 +322,12 @@ public class ModifEmpleados extends javax.swing.JFrame
             }
         }
     }//GEN-LAST:event_btn_ModificarActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosed
+    {//GEN-HEADEREND:event_formWindowClosed
+        // TODO add your handling code here:
+        Principal.activarBotones();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

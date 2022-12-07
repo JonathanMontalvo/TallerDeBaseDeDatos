@@ -5,6 +5,7 @@
 package com.mycompany.veterinaria.vista.insertar;
 
 import com.mycompany.veterinaria.modelo.Proveedores;
+import com.mycompany.veterinaria.vista.Principal;
 import javax.swing.JOptionPane;
 
 /**
@@ -42,6 +43,13 @@ public class FormProveedores extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insertar Proveedor");
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowClosed(java.awt.event.WindowEvent evt)
+            {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel3.setText("Ingrese el nombre: ");
@@ -152,6 +160,12 @@ public class FormProveedores extends javax.swing.JFrame
             }
         }
     }//GEN-LAST:event_btn_InsertarActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosed
+    {//GEN-HEADEREND:event_formWindowClosed
+        // TODO add your handling code here:
+        Principal.activarBotones();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

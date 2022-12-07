@@ -76,6 +76,13 @@ public class FormMascota extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insertar Mascota");
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowClosed(java.awt.event.WindowEvent evt)
+            {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel5.setText("Ingrese el nombre: ");
@@ -320,6 +327,12 @@ public class FormMascota extends javax.swing.JFrame
 
         txt_TutorNombre.setText(nombre);
     }//GEN-LAST:event_combo_TutorActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosed
+    {//GEN-HEADEREND:event_formWindowClosed
+        // TODO add your handling code here:
+        Principal.activarBotones();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

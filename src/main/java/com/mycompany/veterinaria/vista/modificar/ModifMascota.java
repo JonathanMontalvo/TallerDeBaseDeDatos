@@ -71,6 +71,13 @@ public class ModifMascota extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Mascota");
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowClosed(java.awt.event.WindowEvent evt)
+            {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Seleccione los campos que desea modificar: ");
@@ -268,7 +275,7 @@ public class ModifMascota extends javax.swing.JFrame
         double medida = 0.0;
         String fechanacimiento = "";
         String detalles = "";
-        
+
         Mascota mascota = (Mascota) combo_Mascota.getSelectedItem();
         idtutor = mascota.getIdtutor();
         nombre = mascota.getNombre();
@@ -310,7 +317,7 @@ public class ModifMascota extends javax.swing.JFrame
         }
         txt_Tipo.setText(tipo);
         txt_Raza.setText(raza);
-        
+
         if ("Femenino".equals(sexo))
         {
             combo_Sexo.setSelectedIndex(0);
@@ -318,7 +325,7 @@ public class ModifMascota extends javax.swing.JFrame
         {
             combo_Sexo.setSelectedIndex(1);
         }
-        
+
         txt_Peso.setText(String.valueOf(peso));
         txt_Medida.setText(String.valueOf(medida));
         txt_Detalles.setText(detalles);
@@ -337,10 +344,10 @@ public class ModifMascota extends javax.swing.JFrame
         double medida = 0.0;
         String fechanacimiento = null;
         String detalles = "";
-        
+
         Tutor tutor = (Tutor) combo_Tutor.getSelectedItem();
         Mascota mascota = (Mascota) combo_Mascota.getSelectedItem();
-        
+
         if (txt_Tipo.getText().equals("") || txt_Raza.getText().equals("") || txt_Peso.getText().equals("") || txt_Medida.getText().equals("") || txt_Detalles.getText().equals(""))
         {
             JOptionPane.showMessageDialog(this, "Favor de capturar los datos faltantes", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -355,7 +362,7 @@ public class ModifMascota extends javax.swing.JFrame
                     java.sql.Date f = new java.sql.Date(d);
                     fechanacimiento = f.toString().substring(8, 10) + "/" + f.toString().substring(5, 7) + "/" + f.toString().substring(2, 4);
                 }
-                
+
                 nombre = txt_Nombre.getText();
                 idtutor = tutor.getIdtutor();
                 tipo = txt_Tipo.getText();
@@ -386,6 +393,12 @@ public class ModifMascota extends javax.swing.JFrame
             }
         }
     }//GEN-LAST:event_btn_ModificarActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowClosed
+    {//GEN-HEADEREND:event_formWindowClosed
+        // TODO add your handling code here:
+        Principal.activarBotones();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -468,7 +481,7 @@ public class ModifMascota extends javax.swing.JFrame
             combo_Tutor.addItem(tutor);
         }
     }
-    
+
     public void llenarCombo_IdMascota()
     {
         combo_Mascota.removeAllItems();

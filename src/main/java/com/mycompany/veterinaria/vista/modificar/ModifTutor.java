@@ -53,6 +53,13 @@ public class ModifTutor extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Editar Tutor");
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowOpened(java.awt.event.WindowEvent evt)
+            {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Seleccione los campos que desea modificar: ");
@@ -226,6 +233,12 @@ public class ModifTutor extends javax.swing.JFrame
             }
         }
     }//GEN-LAST:event_btn_ModificarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
+    {//GEN-HEADEREND:event_formWindowOpened
+        // TODO add your handling code here:
+        Principal.activarBotones();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
